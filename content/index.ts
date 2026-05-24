@@ -58,6 +58,18 @@ export interface ServicesContent {
   items: readonly ServiceItem[];
 }
 
+export interface WorkflowStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface WorkflowContent {
+  eyebrow: string;
+  heading: string;
+  steps: readonly WorkflowStep[];
+}
+
 export interface HeroContent {
   // Regel boven de hero: locatie · specialisatie
   eyebrow: string;
@@ -82,8 +94,8 @@ export interface SiteContent {
   header: HeaderContent;
   hero: HeroContent;
   services: ServicesContent;
+  workflow: WorkflowContent;
   // Volgende secties worden hier toegevoegd:
-  // workflow: WorkflowContent;
   // about: AboutContent;
   // contact: ContactContent;
   // footer: FooterContent;
@@ -166,6 +178,38 @@ export const content: SiteContent = {
         number: "06",
         title: "Preventief onderhoud",
         description: "Regelmatige inspectie en onderhoud van kritieke machineonderdelen om ongeplande stilstand te voorkomen. Wij stellen een onderhoudsprogramma op dat past bij uw productiecyclus.",
+      },
+    ],
+  },
+
+  workflow: {
+    eyebrow: "Hoe wij werken",
+    heading: "Vijf stappen. Eén heldere aanpak.",
+    steps: [
+      {
+        number: "01",
+        title: "Inventarisatie",
+        description: "We brengen de situatie in kaart: type machine, aard van het probleem, gewenste uitkomst en eventuele beperkingen op locatie of in tijdsplanning.",
+      },
+      {
+        number: "02",
+        title: "Technische beoordeling",
+        description: "Op basis van de inventarisatie bepalen we de juiste aanpak, benodigde apparatuur, doorlooptijd en eventuele risico's. U krijgt een concrete offerte voor akkoord.",
+      },
+      {
+        number: "03",
+        title: "Uitvoering op locatie of in werkplaats",
+        description: "Wij voeren het werk uit waar dat het meest efficiënt is, bij u op locatie of in onze werkplaats in Puttershoek. Geen verrassingen, duidelijke communicatie tijdens het proces.",
+      },
+      {
+        number: "04",
+        title: "Controle en oplevering",
+        description: "Voor oplevering controleren we de bewerking op specificaties en functionaliteit. U ontvangt een verslag van de uitgevoerde werkzaamheden.",
+      },
+      {
+        number: "05",
+        title: "Advies voor vervolg en onderhoud",
+        description: "Waar relevant adviseren we over preventief onderhoud, herinspectie-intervallen of mogelijke verbeteringen om herhaling van het probleem te voorkomen.",
       },
     ],
   },
