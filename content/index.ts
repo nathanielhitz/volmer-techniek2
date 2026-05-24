@@ -45,6 +45,18 @@ export interface HeaderContent {
   };
 }
 
+export interface ServiceItem {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface ServicesContent {
+  eyebrow: string;
+  heading: string;
+  items: readonly ServiceItem[];
+}
+
 export interface HeroContent {
   // Regel boven de hero: locatie · specialisatie
   eyebrow: string;
@@ -68,8 +80,8 @@ export interface HeroContent {
 export interface SiteContent {
   header: HeaderContent;
   hero: HeroContent;
+  services: ServicesContent;
   // Volgende secties worden hier toegevoegd:
-  // services: ServicesContent;
   // workflow: WorkflowContent;
   // about: AboutContent;
   // contact: ContactContent;
@@ -115,6 +127,43 @@ export const content: SiteContent = {
       "VCA Gecertificeerd",
       "ISO 9001",
       "Lid Koninklijke Metaalunie",
+    ],
+  },
+
+  services: {
+    eyebrow: "Wat wij doen",
+    heading: "Zes disciplines. Één aanspreekpunt.",
+    items: [
+      {
+        number: "01",
+        title: "On-site machining",
+        description: "Wanneer een machine niet naar de werkplaats kan, brengen wij de bewerking naar de machine. Draai-, frees- en kotterwerk direct op locatie, zonder demontage, zonder transport en zonder onnodige stilstand.",
+      },
+      {
+        number: "02",
+        title: "Verspaning in eigen werkplaats",
+        description: "Nauwkeurig draai-, frees- en kotterwerk voor maatwerk-onderdelen, vervangingsonderdelen en herstelwerk. Toleranties tot ±0.02mm. Van enkelstuks tot kleine series.",
+      },
+      {
+        number: "03",
+        title: "Industriële reparaties",
+        description: "Snelle diagnose en herstel van beschadigde of versleten machineonderdelen, op locatie of in onze werkplaats. Van gebroken assen tot versleten lagerblokken. Gericht op minimale stilstand en betrouwbare oplevering.",
+      },
+      {
+        number: "04",
+        title: "Machinebouw en maatwerk",
+        description: "Ontwerp en realisatie van maatwerkonderdelen en oplossingen voor industriële toepassingen. Van eenmalige vervangingsonderdelen tot complete sub-assemblages. Wij denken mee van tekening tot oplevering.",
+      },
+      {
+        number: "05",
+        title: "Retrofit en modernisering",
+        description: "Bestaande machines aanpassen, verbeteren of updaten zonder volledige vervanging. Wij brengen verouderde installaties op het gewenste niveau, kostenefficiënter dan nieuwbouw en met behoud van wat werkt.",
+      },
+      {
+        number: "06",
+        title: "Preventief onderhoud",
+        description: "Regelmatige inspectie en onderhoud van kritieke machineonderdelen om ongeplande stilstand te voorkomen. Wij stellen een onderhoudsprogramma op dat past bij uw productiecyclus.",
+      },
     ],
   },
 };
