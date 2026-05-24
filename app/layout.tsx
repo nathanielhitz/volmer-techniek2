@@ -24,10 +24,45 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = "https://www.volmertechniek.com";
+const siteTitle =
+  "Volmer Techniek B.V. — Verspanende techniek op locatie en in de werkplaats";
+const siteDescription =
+  "Volmer Techniek levert on-site machining, industriële reparaties en verspanende werkzaamheden in Puttershoek. Snel schakelen, precies werken, minimale stilstand.";
+
 export const metadata: Metadata = {
-  title: "Volmer Techniek — Maatwerk machinebouw, lassen en thermische lansen",
-  description:
-    "Maatwerk machinebouw, lassen, staalconstructies en thermische lansen voor offshore, mining, maritiem en industrie. Eén werkplaats, één ploeg.",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  keywords: [
+    "on-site machining",
+    "verspanende techniek",
+    "industriële reparaties",
+    "machinebouw",
+    "Puttershoek",
+    "retrofit",
+    "preventief onderhoud",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName: "Volmer Techniek B.V.",
+    locale: "nl_NL",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: siteTitle,
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -41,6 +76,9 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <a href="#main-content" className="skip-link">
+          Naar hoofdinhoud
+        </a>
         {children}
         <Footer />
       </body>

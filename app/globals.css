@@ -170,3 +170,39 @@ body::before {
   outline: 2px solid var(--color-molten);
   outline-offset: 2px;
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SKIP LINK — verborgen tot focus (keyboard-toegankelijkheid)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.skip-link {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skip-link:focus {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  overflow: visible;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  z-index: 9999;
+  padding: 14px 20px;
+  background: var(--color-molten);
+  color: var(--color-obsidian);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  outline: 2px solid var(--color-obsidian);
+  outline-offset: -4px;
+}
