@@ -2,13 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { content } from "@/content";
 
-const NAV_ITEMS = [
-  { label: "Diensten", href: "#diensten" },
-  { label: "Werkwijze", href: "#werkwijze" },
-  { label: "Over ons", href: "#over-ons" },
-  { label: "Contact", href: "#contact" },
-] as const;
+const { header } = content;
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -94,7 +90,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            aria-label="Volmer Techniek — terug naar home"
+            aria-label={header.logoAriaLabel}
             style={{
               display: "flex",
               alignItems: "center",
@@ -122,11 +118,11 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav
-            aria-label="Hoofdnavigatie"
+            aria-label={header.nav.ariaLabel}
             className="hidden lg:flex"
             style={{ alignItems: "center", gap: "4px" }}
           >
-            {NAV_ITEMS.map((item) => (
+            {header.nav.items.map((item) => (
               <NavLink key={item.href} href={item.href}>
                 {item.label}
               </NavLink>
@@ -135,14 +131,14 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex" style={{ alignItems: "center" }}>
-            <DesktopCTA />
+            <DesktopCTA label={header.cta.desktop} />
           </div>
 
-          {/* Hamburger */}
+          {/* Hamburger — aria-label wisselt op basis van open-state */}
           <button
             ref={hamburgerRef}
             className="lg:hidden"
-            aria-label={mobileOpen ? "Menu sluiten" : "Menu openen"}
+            aria-label={mobileOpen ? header.mobileMenu.closeLabel : header.mobileMenu.openLabel}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav-panel"
             onClick={() => setMobileOpen(true)}
@@ -203,7 +199,7 @@ export function Header() {
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Navigatiemenu"
+        aria-label={header.mobileMenu.panelAriaLabel}
         className="lg:hidden"
         style={{
           position: "fixed",
@@ -260,7 +256,7 @@ export function Header() {
 
           <button
             ref={closeButtonRef}
-            aria-label="Menu sluiten"
+            aria-label={header.mobileMenu.closeLabel}
             onClick={() => setMobileOpen(false)}
             style={{
               width: "44px",
@@ -282,7 +278,7 @@ export function Header() {
 
         {/* Nav links */}
         <nav
-          aria-label="Mobiele navigatie"
+          aria-label={header.mobileMenu.navAriaLabel}
           style={{
             flex: 1,
             display: "flex",
@@ -292,7 +288,7 @@ export function Header() {
             overflowY: "auto",
           }}
         >
-          {NAV_ITEMS.map((item) => (
+          {header.nav.items.map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -418,7 +414,7 @@ function NavLink({
   );
 }
 
-function DesktopCTA() {
+function DesktopCTA({ label }: { label: string }) {
   return (
     <a
       href="tel:+31653537747"
@@ -454,7 +450,7 @@ function DesktopCTA() {
       >
         <rect width="5" height="5" fill="var(--color-molten)" />
       </svg>
-      BEL DIRECT
+      {label}
     </a>
   );
 }

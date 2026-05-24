@@ -1,10 +1,7 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { content } from "@/content";
 
-const STRIP_ITEMS = [
-  "VCA Gecertificeerd",
-  "ISO 9001",
-  "Lid Koninklijke Metaalunie",
-] as const;
+const { hero } = content;
 
 export function Hero() {
   return (
@@ -67,7 +64,7 @@ export function Hero() {
             zIndex: 5,
           }}
         >
-          <Eyebrow>PUTTERSHOEK, NL · VERSPANENDE TECHNIEK</Eyebrow>
+          <Eyebrow>{hero.eyebrow}</Eyebrow>
         </div>
 
         {/* Hero content */}
@@ -92,7 +89,7 @@ export function Hero() {
             }}
             className="lg:grid-two-col"
           >
-            {/* H1 — primary */}
+            {/* H1 */}
             <h1
               style={{
                 fontFamily: "var(--font-display)",
@@ -105,9 +102,9 @@ export function Hero() {
               }}
               className="lg:hero-h1"
             >
-              Verspanende techniek
+              {hero.headline.line1}
               <br />
-              op locatie en in{" "}
+              {hero.headline.line2}{" "}
               <span
                 style={{
                   color: "var(--color-steel-30)",
@@ -116,7 +113,7 @@ export function Hero() {
                   marginTop: "8px",
                 }}
               >
-                de werkplaats.
+                {hero.headline.accent}
               </span>
             </h1>
 
@@ -138,16 +135,12 @@ export function Hero() {
                   margin: 0,
                 }}
               >
-                Nauwkeurig verspanen, herstellen en aanpassen. Wij beperken
-                stilstand — op locatie of in onze werkplaats in Puttershoek.
+                {hero.lede}
               </p>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-                {/* Primary CTA */}
-                <PrimaryCTA />
-
-                {/* Ghost CTA */}
-                <GhostCTA />
+                <PrimaryCTA label={hero.cta.primary} />
+                <GhostCTA label={hero.cta.ghost} />
               </div>
             </div>
           </div>
@@ -189,12 +182,12 @@ export function Hero() {
       `}</style>
 
       {/* Certificate strip */}
-      <CertificateStrip />
+      <CertificateStrip items={hero.certificates} />
     </>
   );
 }
 
-function PrimaryCTA() {
+function PrimaryCTA({ label }: { label: string }) {
   return (
     <a
       href="#contact"
@@ -219,7 +212,7 @@ function PrimaryCTA() {
         cursor: "pointer",
       }}
     >
-      <span>Service aanvragen</span>
+      <span>{label}</span>
       <svg
         className="cta-arrow"
         width="16"
@@ -241,7 +234,7 @@ function PrimaryCTA() {
   );
 }
 
-function GhostCTA() {
+function GhostCTA({ label }: { label: string }) {
   return (
     <a
       href="#diensten"
@@ -270,12 +263,12 @@ function GhostCTA() {
           transition: "width 0.28s cubic-bezier(.2,.7,.2,1)",
         }}
       />
-      Bekijk diensten
+      {label}
     </a>
   );
 }
 
-function CertificateStrip() {
+function CertificateStrip({ items }: { items: readonly string[] }) {
   return (
     <div
       style={{
@@ -298,7 +291,7 @@ function CertificateStrip() {
         }}
         className="md:px-10 lg:px-20"
       >
-        {STRIP_ITEMS.map((item) => (
+        {items.map((item) => (
           <div
             key={item}
             style={{
