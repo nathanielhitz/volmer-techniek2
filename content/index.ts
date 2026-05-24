@@ -49,6 +49,7 @@ export interface ServiceItem {
   number: string;
   title: string;
   description: string;
+  tacticalLabel?: string;
 }
 
 export interface ServicesContent {
@@ -138,11 +139,13 @@ export const content: SiteContent = {
         number: "01",
         title: "On-site machining",
         description: "Wanneer een machine niet naar de werkplaats kan, brengen wij de bewerking naar de machine. Draai-, frees- en kotterwerk direct op locatie, zonder demontage, zonder transport en zonder onnodige stilstand.",
+        tacticalLabel: "LOCATIE · GEEN DEMONTAGE",
       },
       {
         number: "02",
         title: "Verspaning in eigen werkplaats",
         description: "Nauwkeurig draai-, frees- en kotterwerk voor maatwerk-onderdelen, vervangingsonderdelen en herstelwerk. Toleranties tot ±0.02mm. Van enkelstuks tot kleine series.",
+        tacticalLabel: "TOL: ±0.02MM · ENKELSTUKS",
       },
       {
         number: "03",
