@@ -110,6 +110,13 @@ export interface ContactContent {
   form: ContactFormContent;
 }
 
+export interface FooterContent {
+  tagline: string;
+  kvk: string;
+  privacy: { label: string; href: string };
+  cookie: { label: string; href: string };
+}
+
 export interface HeroContent {
   // Regel boven de hero: locatie · specialisatie
   eyebrow: string;
@@ -137,8 +144,7 @@ export interface SiteContent {
   workflow: WorkflowContent;
   about: AboutContent;
   contact: ContactContent;
-  // Volgende secties worden hier toegevoegd:
-  // footer: FooterContent;
+  footer: FooterContent;
 }
 
 export const content: SiteContent = {
@@ -291,5 +297,12 @@ export const content: SiteContent = {
       ],
       submitLabel: "Verstuur aanvraag",
     },
+  },
+
+  footer: {
+    tagline: "Verspanende techniek op locatie en in de werkplaats.",
+    kvk: "KvK 90413962",
+    privacy: { label: "Privacybeleid", href: "#" },
+    cookie: { label: "Cookiebeleid", href: "#" },
   },
 };
