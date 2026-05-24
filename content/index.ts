@@ -70,6 +70,22 @@ export interface WorkflowContent {
   steps: readonly WorkflowStep[];
 }
 
+export interface AboutFact {
+  value: string;
+  label: string;
+}
+
+export interface AboutContent {
+  eyebrow: string;
+  heading: string;
+  // Eerste letter van intro — wordt als grote drop cap gerenderd in Molten
+  dropCapLetter: string;
+  // Volledig intro-tekst, inclusief de dropCapLetter als eerste karakter
+  intro: string;
+  body: string;
+  facts: readonly AboutFact[];
+}
+
 export interface HeroContent {
   // Regel boven de hero: locatie · specialisatie
   eyebrow: string;
@@ -95,8 +111,8 @@ export interface SiteContent {
   hero: HeroContent;
   services: ServicesContent;
   workflow: WorkflowContent;
+  about: AboutContent;
   // Volgende secties worden hier toegevoegd:
-  // about: AboutContent;
   // contact: ContactContent;
   // footer: FooterContent;
 }
@@ -211,6 +227,20 @@ export const content: SiteContent = {
         title: "Advies voor vervolg en onderhoud",
         description: "Waar relevant adviseren we over preventief onderhoud, herinspectie-intervallen of mogelijke verbeteringen om herhaling van het probleem te voorkomen.",
       },
+    ],
+  },
+
+  about: {
+    eyebrow: "Wie wij zijn",
+    heading: "Vakmanschap uit Puttershoek.",
+    dropCapLetter: "V",
+    intro: "Volmer Techniek is een technisch metaalbewerkingsbedrijf gespecialiseerd in verspanende techniek. Wij draaien, frezen en kotteren voor de zware industrie, op locatie bij de klant of in onze werkplaats in Puttershoek.",
+    body: "Eén aanspreekpunt voor al uw verspanende bewerkingen. Of het nu gaat om een spoedklus op een stilstaande productielijn of om nauwkeurig maatwerk voor een nieuwe installatie, wij leveren wat wij afspreken.",
+    facts: [
+      { value: "6", label: "Disciplines" },
+      { value: "24/7", label: "Bereikbaar" },
+      { value: "100%", label: "Maatwerk" },
+      { value: "NL", label: "Eigen werkplaats" },
     ],
   },
 };
