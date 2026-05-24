@@ -177,7 +177,7 @@ export const content: SiteContent = {
       line2: "op locatie en in",
       accent: "de werkplaats.",
     },
-    lede: "Nauwkeurig verspanen, herstellen en aanpassen. Wij beperken stilstand — op locatie of in onze werkplaats in Puttershoek.",
+    lede: "Nauwkeurig verspanen, herstellen en aanpassen. Wij beperken stilstand, op locatie of in onze werkplaats in Puttershoek.",
     cta: {
       primary: "Service aanvragen",
       ghost: "Bekijk diensten",
