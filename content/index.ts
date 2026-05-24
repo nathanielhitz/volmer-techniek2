@@ -86,6 +86,30 @@ export interface AboutContent {
   facts: readonly AboutFact[];
 }
 
+export interface ContactFormContent {
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  phonePlaceholder: string;
+  phoneOptionalLabel: string;
+  messagePlaceholder: string;
+  typeLabel: string;
+  typeOptions: readonly {
+    value: string;
+    label: string;
+  }[];
+  submitLabel: string;
+}
+
+export interface ContactContent {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  address: string;
+  phone: string;
+  email: string;
+  form: ContactFormContent;
+}
+
 export interface HeroContent {
   // Regel boven de hero: locatie · specialisatie
   eyebrow: string;
@@ -112,8 +136,8 @@ export interface SiteContent {
   services: ServicesContent;
   workflow: WorkflowContent;
   about: AboutContent;
+  contact: ContactContent;
   // Volgende secties worden hier toegevoegd:
-  // contact: ContactContent;
   // footer: FooterContent;
 }
 
@@ -242,5 +266,30 @@ export const content: SiteContent = {
       { value: "100%", label: "Maatwerk" },
       { value: "NL", label: "Eigen werkplaats" },
     ],
+  },
+
+  contact: {
+    eyebrow: "Neem contact op",
+    heading: "Bespreek uw technische uitdaging.",
+    intro: "Heeft u een stilstaande machine, een reparatie of een maatwerkoplossing nodig? Neem contact op en wij reageren snel.",
+    address: "Pieter van der Wallstraat 4, 3297 ES Puttershoek",
+    phone: "+31 6 53 53 77 47",
+    email: "info@volmertechniek.com",
+    form: {
+      namePlaceholder: "Naam",
+      emailPlaceholder: "E-mailadres",
+      phonePlaceholder: "Telefoonnummer",
+      phoneOptionalLabel: "optioneel",
+      messagePlaceholder: "Beschrijf uw vraag of uitdaging",
+      typeLabel: "Type aanvraag",
+      typeOptions: [
+        { value: "on-site", label: "On-site machining" },
+        { value: "werkplaats", label: "Verspaning in werkplaats" },
+        { value: "reparatie", label: "Industriële reparatie" },
+        { value: "maatwerk", label: "Machinebouw en maatwerk" },
+        { value: "overig", label: "Overig" },
+      ],
+      submitLabel: "Verstuur aanvraag",
+    },
   },
 };
