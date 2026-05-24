@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volmer Techniek — Design Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --obsidian:#0A0A0B;
+    --carbon:#141416;
+    --graphite:#1E1E22;
+    --steel-60:#6B6E76;
+    --steel-30:#A9ADB5;
+    --ash:#E7E6E2;
+    --bone:#F5F3EE;
+    --molten:#D94A1F;
+    --ember:#7A1F0A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--obsidian);color:var(--ash);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{line-height:1.6;font-size:16px}
+  .container{max-width:1440px;margin:0 auto;padding:0 80px}
+  .display{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:-0.02em;line-height:0.98}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--steel-60)}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:100;background:rgba(10,10,11,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--graphite)}
+  nav .inner{display:flex;align-items:center;justify-content:space-between;padding:22px 80px}
+  .logo{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:-0.02em;font-size:18px;color:var(--ash)}
+  .logo span{color:var(--molten)}
+  .navlinks{display:flex;gap:36px}
+  .navlinks a{color:var(--ash);text-decoration:none;font-size:14px;font-weight:500;opacity:.85;transition:opacity .2s}
+  .navlinks a:hover{opacity:1;color:var(--molten)}
+  .nav-cta{display:flex;align-items:center;gap:20px}
+  .nav-cta .lang{font-size:12px;letter-spacing:.1em;color:var(--steel-30)}
+  .nav-cta .phone{padding:10px 18px;border:1px solid var(--graphite);color:var(--ash);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;transition:all .2s}
+  .nav-cta .phone:hover{border-color:var(--molten);color:var(--molten)}
+
+  /* Hero */
+  .hero{min-height:88vh;display:flex;align-items:flex-end;position:relative;padding:80px 0 96px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(ellipse at 75% 60%, rgba(217,74,31,0.18), transparent 55%),
+    radial-gradient(ellipse at 25% 90%, rgba(122,31,10,0.12), transparent 50%),
+    linear-gradient(180deg, rgba(10,10,11,0) 0%, rgba(10,10,11,0.7) 80%, var(--obsidian) 100%);
+    z-index:0}
+  .hero::after{content:"";position:absolute;inset:0;background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+    z-index:0;mix-blend-mode:overlay}
+  .hero .container{position:relative;z-index:2;width:100%}
+  .hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+  .hero h1{font-size:clamp(48px,8vw,128px);font-weight:700;letter-spacing:-0.03em;line-height:0.95;color:var(--ash)}
+  .hero h1 em{font-style:normal;color:var(--molten)}
+  .hero .meta{display:flex;flex-direction:column;gap:32px;align-self:end;padding-bottom:8px}
+  .hero .meta p{color:var(--steel-30);font-size:17px;max-width:380px;line-height:1.55}
+  .hero .cta{display:inline-flex;align-items:center;gap:14px;padding:18px 28px;background:transparent;border:1px solid var(--ash);color:var(--ash);text-decoration:none;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;width:fit-content;transition:all .25s}
+  .hero .cta:hover{background:var(--molten);border-color:var(--molten);color:var(--obsidian)}
+  .hero .cta .arrow{transition:transform .25s}
+  .hero .cta:hover .arrow{transform:translateX(4px)}
+
+  /* Eyebrow strip */
+  .strip{border-top:1px solid var(--graphite);border-bottom:1px solid var(--graphite);padding:22px 0;background:var(--carbon)}
+  .strip .inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  .strip span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--steel-60)}
+
+  /* Section */
+  section.block{padding:160px 0;border-bottom:1px solid var(--graphite)}
+  .section-head{display:grid;grid-template-columns:1fr 2fr;gap:80px;margin-bottom:96px}
+  .section-head .num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--molten);letter-spacing:0.15em}
+  .section-head h2{font-size:clamp(36px,5vw,72px);font-weight:600;letter-spacing:-0.02em;line-height:1.02;margin-top:18px;color:var(--ash)}
+  .section-head .lede{color:var(--steel-30);font-size:18px;line-height:1.6;max-width:560px}
+
+  /* Services grid */
+  .services{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--graphite);border:1px solid var(--graphite)}
+  .service{background:var(--obsidian);padding:56px 48px;display:flex;flex-direction:column;gap:24px;min-height:320px;justify-content:space-between;transition:background .25s}
+  .service:hover{background:var(--carbon)}
+  .service .num{font-family:'JetBrains Mono',monospace;color:var(--steel-60);font-size:12px;letter-spacing:0.18em}
+  .service h3{font-size:32px;font-weight:600;letter-spacing:-0.015em;color:var(--ash)}
+  .service p{color:var(--steel-30);font-size:15px;line-height:1.6;max-width:380px}
+  .service .more{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--molten);text-decoration:none}
+
+  /* Sectors */
+  .sectors{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--graphite)}
+  .sector{flex:1 1 calc(33.333% - 1px);min-width:220px;padding:36px 28px;border-right:1px solid var(--graphite);border-bottom:1px solid var(--graphite);display:flex;justify-content:space-between;align-items:center}
+  .sector span{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.15em;color:var(--ash)}
+  .sector .dot{width:6px;height:6px;background:var(--molten);border-radius:50%}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:48px}
+  .stat .v{font-size:clamp(56px,7vw,96px);font-weight:700;letter-spacing:-0.03em;color:var(--ash);line-height:1}
+  .stat .v sup{color:var(--molten);font-size:.5em;vertical-align:top;margin-left:6px}
+  .stat .l{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel-60)}
+
+  /* Project */
+  .project{display:grid;grid-template-columns:5fr 4fr;gap:64px;align-items:center}
+  .project .visual{aspect-ratio:4/5;background:
+    linear-gradient(135deg, #1a1a1d 0%, #0a0a0b 60%),
+    radial-gradient(ellipse at 70% 30%, rgba(217,74,31,0.25), transparent 60%);
+    position:relative;border:1px solid var(--graphite);overflow:hidden}
+  .project .visual::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 70%, rgba(217,74,31,0.32), transparent 50%);mix-blend-mode:screen}
+  .project .visual::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 4px)}
+  .project .info .num{font-family:'JetBrains Mono',monospace;color:var(--molten);font-size:13px;letter-spacing:0.15em}
+  .project .info h3{font-size:48px;font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:18px 0 28px;color:var(--ash)}
+  .project .info p{color:var(--steel-30);font-size:17px;line-height:1.6;margin-bottom:36px;max-width:480px}
+  .specs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:36px;border-top:1px solid var(--graphite);padding-top:28px}
+  .specs .row{display:flex;flex-direction:column;gap:6px}
+  .specs .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--steel-60)}
+  .specs .vv{color:var(--ash);font-size:15px}
+
+  /* Quote */
+  .quote{padding:200px 0;text-align:left}
+  .quote blockquote{font-size:clamp(32px,4vw,56px);font-weight:500;letter-spacing:-0.02em;line-height:1.15;color:var(--ash);max-width:1100px}
+  .quote blockquote::before{content:"\201C";color:var(--molten);font-size:1.2em;line-height:0;vertical-align:-0.1em;margin-right:0.1em}
+  .quote cite{display:block;margin-top:48px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.15em;color:var(--steel-60);text-transform:uppercase;font-style:normal}
+
+  /* Footer */
+  footer{padding:96px 0 48px;background:var(--carbon);border-top:1px solid var(--graphite)}
+  footer .top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px;border-bottom:1px solid var(--graphite)}
+  footer h4{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--steel-60);margin-bottom:18px}
+  footer a{display:block;color:var(--ash);text-decoration:none;font-size:14px;padding:6px 0;opacity:.8}
+  footer a:hover{color:var(--molten);opacity:1}
+  footer .brand p{color:var(--steel-30);font-size:14px;max-width:340px;margin-top:18px}
+  footer .bottom{display:flex;justify-content:space-between;padding-top:32px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;color:var(--steel-60);text-transform:uppercase}
+
+  /* Design system showcase section */
+  .system{background:var(--carbon);padding:120px 0;border-top:1px solid var(--graphite)}
+  .system h2{font-size:48px;font-weight:600;letter-spacing:-0.02em;margin-bottom:48px;color:var(--ash)}
+  .palette{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:80px}
+  .swatch{aspect-ratio:4/5;border:1px solid var(--graphite);display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
+  .swatch .name{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ash)}
+  .swatch .hex{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--steel-30);margin-top:4px}
+  .typo-row{display:grid;grid-template-columns:120px 1fr;gap:32px;padding:24px 0;border-bottom:1px solid var(--graphite);align-items:baseline}
+  .typo-row .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel-60)}
+  .typo-row .sample{color:var(--ash);letter-spacing:-0.02em}
+
+  /* Wireframes */
+  .wires{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
+  .wire{background:var(--obsidian);border:1px solid var(--graphite);padding:24px;aspect-ratio:9/16;display:flex;flex-direction:column;gap:12px;overflow:hidden;position:relative}
+  .wire .wname{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--molten);margin-bottom:8px}
+  .wire .wbar{height:18px;background:var(--graphite)}
+  .wire .wbar.tall{height:120px;background:linear-gradient(135deg,#1e1e22,#0a0a0b)}
+  .wire .wbar.split{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:transparent;height:80px}
+  .wire .wbar.split > div{background:var(--graphite)}
+  .wire .wgrid4{display:grid;grid-template-columns:1fr 1fr;gap:6px;height:160px}
+  .wire .wgrid4 > div{background:var(--graphite)}
+  .wire .wline{height:6px;background:var(--graphite)}
+  .wire .wline.short{width:60%}
+  .wire .wline.shorter{width:40%}
+  .wire .wmod{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;height:100px}
+  .wire .wmod > div{background:var(--graphite)}
+
+  /* Mobile */
+  @media (max-width: 900px){
+    .container, nav .inner{padding-left:24px;padding-right:24px}
+    .hero{min-height:80vh;padding:48px 0 64px}
+    .hero .grid{grid-template-columns:1fr;gap:32px}
+    .hero h1{font-size:48px}
+    .section-head{grid-template-columns:1fr;gap:24px;margin-bottom:48px}
+    section.block{padding:96px 0}
+    .services{grid-template-columns:1fr}
+    .service{padding:36px 28px;min-height:240px}
+    .stats{grid-template-columns:1fr 1fr;gap:32px}
+    .project{grid-template-columns:1fr;gap:32px}
+    .navlinks{display:none}
+    footer .top{grid-template-columns:1fr 1fr;gap:32px}
+    .palette{grid-template-columns:repeat(2,1fr)}
+    .wires{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">Volmer<span>.</span>Techniek</div>
+    <div class="navlinks">
+      <a href="#">Service</a>
+      <a href="#">Sales</a>
+      <a href="#">Werk</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <span class="lang">NL · EN</span>
+      <a class="phone" href="tel:#">+31 (0) — bel direct</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="grid">
+      <h1>Staal wordt pas iets in handen die<br><em>het kennen.</em></h1>
+      <div class="meta">
+        <span class="eyebrow">Sinds 19XX · In-house engineering</span>
+        <p>Maatwerk machinebouw, lassen, staalconstructie en thermische lansen. Alles onder één dak. Eén ploeg, één aanspreekpunt.</p>
+        <a class="cta" href="#">Plan een werkbezoek <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="container inner">
+    <span>VCA Gecertificeerd</span>
+    <span>ISO Standaarden</span>
+    <span>Lid Koninklijke Metaalunie</span>
+    <span>24/7 Emergency Service</span>
+    <span>Eigen Werkplaats</span>
+  </div>
+</div>
+
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="num">— 01 / DIENSTEN</span>
+      </div>
+      <div>
+        <h2>Vier disciplines.<br>Eén werkplaats.</h2>
+        <p class="lede">Van eerste schets tot installatie ter plaatse. We bouwen niet voor catalogi, we bouwen voor jouw productielijn.</p>
+      </div>
+    </div>
+
+    <div class="services">
+      <div class="service">
+        <div>
+          <span class="num">01 — SERVICE</span>
+          <h3 style="margin-top:18px">Lassen & staalbouw</h3>
+        </div>
+        <p>MIG/MAG, TIG, elektrode en gouching. Frames, trappen, leuningen, platformen — nieuwbouw en spoedreparatie, in werkplaats of op locatie.</p>
+        <a class="more" href="#">→ Bekijk service</a>
+      </div>
+      <div class="service">
+        <div>
+          <span class="num">02 — SALES</span>
+          <h3 style="margin-top:18px">Thermische lansen</h3>
+        </div>
+        <p>Tot 5.500 °C. Snijdt door beton, gietijzer en pantserstaal. Compleet systeem incl. slangen, regelaars en training. Te koop én huur.</p>
+        <a class="more" href="#">→ Bekijk sales</a>
+      </div>
+      <div class="service">
+        <div>
+          <span class="num">03 — MAATWERK</span>
+          <h3 style="margin-top:18px">Custom machines</h3>
+        </div>
+        <p>Van concept tot installatie. Engineering in-house, productie in eigen hand, service na oplevering. Geen tussenpersonen.</p>
+        <a class="more" href="#">→ Bekijk werk</a>
+      </div>
+      <div class="service">
+        <div>
+          <span class="num">04 — ONDERHOUD</span>
+          <h3 style="margin-top:18px">Preventief & retrofit</h3>
+        </div>
+        <p>Modernisering van bestaande lijnen. Hydraulisch persen van bussen en pennen. Inspecties die downtime voorkomen.</p>
+        <a class="more" href="#">→ Plan onderhoud</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div><span class="num">— 02 / SECTOREN</span></div>
+      <div>
+        <h2>Waar ons werk staat.</h2>
+        <p class="lede">Zwaar industrieel, vaak buiten, vrijwel altijd in productie. We zijn op ons best als de inzet hoog is.</p>
+      </div>
+    </div>
+    <div class="sectors">
+      <div class="sector"><span>Offshore</span><span class="dot"></span></div>
+      <div class="sector"><span>Onshore</span><span class="dot"></span></div>
+      <div class="sector"><span>Mining</span><span class="dot"></span></div>
+      <div class="sector"><span>Maritiem</span><span class="dot"></span></div>
+      <div class="sector"><span>Recycling</span><span class="dot"></span></div>
+      <div class="sector"><span>Kraanbouw</span><span class="dot"></span></div>
+      <div class="sector"><span>Machinebouw</span><span class="dot"></span></div>
+      <div class="sector"><span>Hydrauliek</span><span class="dot"></span></div>
+      <div class="sector"><span>Emergency</span><span class="dot"></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div><span class="num">— 03 / FEITEN</span></div>
+      <div>
+        <h2>Geen claims.<br>Cijfers.</h2>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="v">XX<sup>+</sup></div><div class="l">Jaren in vak</div></div>
+      <div class="stat"><div class="v">5500<sup>°C</sup></div><div class="l">Snijtemperatuur lans</div></div>
+      <div class="stat"><div class="v">24/7</div><div class="l">Emergency response</div></div>
+      <div class="stat"><div class="v">100<sup>%</sup></div><div class="l">In-house engineering</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="project">
+      <div class="visual"></div>
+      <div class="info">
+        <span class="num">UITGELICHT WERK</span>
+        <h3>Renovatie hydraulische pers — recyclingsector</h3>
+        <p>Volledige demontage, herbouw van cilindergroep, retrofit van besturing. Twee weken planning, gereed in tien dagen.</p>
+        <div class="specs">
+          <div class="row"><span class="k">Sector</span><span class="vv">Recycling</span></div>
+          <div class="row"><span class="k">Doorlooptijd</span><span class="vv">10 werkdagen</span></div>
+          <div class="row"><span class="k">Inzet</span><span class="vv">4 monteurs</span></div>
+          <div class="row"><span class="k">Status</span><span class="vv">In productie</span></div>
+        </div>
+        <a class="cta" href="#" style="display:inline-flex">Bekijk werk <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="container">
+    <blockquote>Wie ons belt, krijgt iemand die het werk zelf gedaan heeft.</blockquote>
+    <cite>— Filosofie van Volmer Techniek</cite>
+  </div>
+</section>
+
+<!-- Brand system showcase -->
+<section class="system">
+  <div class="container">
+    <span class="eyebrow">— BRAND SYSTEM</span>
+    <h2 style="margin-top:18px">Palette & Type</h2>
+
+    <div class="palette">
+      <div class="swatch" style="background:#0A0A0B"><div class="name">Obsidian</div><div class="hex">#0A0A0B</div></div>
+      <div class="swatch" style="background:#141416"><div class="name">Carbon</div><div class="hex">#141416</div></div>
+      <div class="swatch" style="background:#1E1E22"><div class="name">Graphite</div><div class="hex">#1E1E22</div></div>
+      <div class="swatch" style="background:#6B6E76"><div class="name">Steel 60</div><div class="hex">#6B6E76</div></div>
+      <div class="swatch" style="background:#A9ADB5"><div class="name" style="color:#0A0A0B">Steel 30</div><div class="hex" style="color:#0A0A0B">#A9ADB5</div></div>
+      <div class="swatch" style="background:#E7E6E2"><div class="name" style="color:#0A0A0B">Ash</div><div class="hex" style="color:#0A0A0B">#E7E6E2</div></div>
+      <div class="swatch" style="background:#F5F3EE"><div class="name" style="color:#0A0A0B">Bone</div><div class="hex" style="color:#0A0A0B">#F5F3EE</div></div>
+      <div class="swatch" style="background:#D94A1F"><div class="name">Molten</div><div class="hex">#D94A1F</div></div>
+      <div class="swatch" style="background:#7A1F0A"><div class="name">Ember</div><div class="hex">#7A1F0A</div></div>
+      <div class="swatch" style="background:transparent;border:1px dashed var(--graphite)"><div class="name" style="color:var(--steel-60)">— spacing</div><div class="hex">8 / 24 / 64 / 160</div></div>
+    </div>
+
+    <h2 style="margin-top:24px">Type scale</h2>
+    <div style="margin-top:24px">
+      <div class="typo-row"><div class="label">Display XL</div><div class="sample" style="font-size:96px;font-weight:700;line-height:0.95">Vakmanschap.</div></div>
+      <div class="typo-row"><div class="label">Display L</div><div class="sample" style="font-size:64px;font-weight:600">Maatwerk machinebouw</div></div>
+      <div class="typo-row"><div class="label">H1</div><div class="sample" style="font-size:40px;font-weight:500">Eén werkplaats, vier disciplines</div></div>
+      <div class="typo-row"><div class="label">H2</div><div class="sample" style="font-size:28px;font-weight:500">Service · Sales · Custom · Onderhoud</div></div>
+      <div class="typo-row"><div class="label">Body L</div><div class="sample" style="font-size:18px;font-weight:400;color:var(--steel-30)">We bouwen niet voor catalogi, we bouwen voor jouw productielijn.</div></div>
+      <div class="typo-row"><div class="label">Mono</div><div class="sample mono" style="font-size:14px">VCA · ISO · METAALUNIE · SINDS 19XX</div></div>
+      <div class="typo-row"><div class="label">Eyebrow</div><div class="sample eyebrow" style="font-size:12px">— UITGELICHT WERK / RECYCLING</div></div>
+    </div>
+
+    <h2 style="margin-top:80px">Wireframe concepten</h2>
+    <div class="wires">
+      <div class="wire">
+        <div class="wname">Concept A · The Workshop</div>
+        <div class="wbar tall" style="background:linear-gradient(135deg,#1a1a1d,#0a0a0b),radial-gradient(circle at 70% 50%,rgba(217,74,31,0.3),transparent 60%)"></div>
+        <div class="wline short" style="background:var(--ash)"></div>
+        <div class="wline shorter"></div>
+        <div class="wgrid4">
+          <div></div><div></div><div></div><div></div>
+        </div>
+        <div class="wline"></div>
+        <div class="wbar" style="height:80px"></div>
+      </div>
+      <div class="wire">
+        <div class="wname">Concept B · The Document</div>
+        <div class="wline shorter" style="background:var(--molten);width:30%"></div>
+        <div class="wline" style="background:var(--ash);height:18px"></div>
+        <div class="wline" style="background:var(--ash);height:18px;width:80%"></div>
+        <div class="wline" style="background:var(--ash);height:18px;width:60%"></div>
+        <div class="wline shorter"></div>
+        <div class="wbar" style="height:140px"></div>
+        <div class="wline"></div>
+        <div class="wline short"></div>
+        <div class="wline"></div>
+      </div>
+      <div class="wire">
+        <div class="wname">Concept C · The Spec Sheet</div>
+        <div class="wbar split"><div></div><div></div></div>
+        <div class="wmod"><div></div><div></div><div></div></div>
+        <div class="wmod" style="height:60px"><div></div><div></div><div></div></div>
+        <div class="wbar" style="height:80px"></div>
+        <div class="wbar split"><div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="top">
+      <div class="brand">
+        <div class="logo">Volmer<span>.</span>Techniek</div>
+        <p>Maatwerk machinebouw, lassen, staalconstructies en thermische lansen. Eén ploeg, één werkplaats, één aanspreekpunt.</p>
+      </div>
+      <div>
+        <h4>Diensten</h4>
+        <a href="#">Service</a>
+        <a href="#">Sales</a>
+        <a href="#">Custom builds</a>
+        <a href="#">Onderhoud</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:#">+31 (0) — direct</a>
+        <a href="mailto:#">info@volmertechniek.com</a>
+        <a href="#">LinkedIn</a>
+      </div>
+      <div>
+        <h4>Standaarden</h4>
+        <a href="#">VCA</a>
+        <a href="#">ISO</a>
+        <a href="#">Koninklijke Metaalunie</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© Volmer Techniek B.V.</span>
+      <span>Algemene voorwaarden Metaalunie</span>
+      <span>NL · EN</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
