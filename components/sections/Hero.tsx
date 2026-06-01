@@ -201,14 +201,14 @@ export async function Hero() {
           z-index: 0;
         }
         .hero-photo-overlay {
-          background: rgba(0, 0, 0, 0.52);
+          background: rgba(0, 0, 0, 0.32);
         }
         @media (min-width: 1024px) {
           .hero-photo-wrapper {
             left: 52%;
           }
           .hero-photo-overlay {
-            background: rgba(0, 0, 0, 0.38);
+            background: rgba(0, 0, 0, 0.16);
           }
         }
         @media (min-width: 768px) {
