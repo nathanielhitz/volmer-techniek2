@@ -33,12 +33,14 @@ export function ContactForm() {
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [pending, setPending] = useState(false);
 
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   function validate(): FormErrors {
     const e: FormErrors = {};
@@ -59,7 +61,7 @@ export function ContactForm() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
@@ -69,12 +71,30 @@ export function ContactForm() {
       else if (errs.message) messageRef.current?.focus();
       return;
     }
+
     setPending(true);
-    console.log("Contact form submit:", values);
-    setTimeout(() => {
+    setSubmitError(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+          website: honeypotRef.current?.value ?? "",
+        }),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(t("errors.submitFailed"));
+      }
+    } catch {
+      setSubmitError(t("errors.submitFailed"));
+    } finally {
       setPending(false);
-      setSubmitted(true);
-    }, 600);
+    }
   }
 
   if (submitted) {
@@ -113,6 +133,30 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
+      {/* Honeypot — hidden from real users, bots fill it in */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: "1px",
+          height: "1px",
+          overflow: "hidden",
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      >
+        <label htmlFor="cf-website">Website</label>
+        <input
+          ref={honeypotRef}
+          id="cf-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="cf-fields">
         {/* Naam */}
         <Field label={t("nameLabel")} error={errors.name} required>
@@ -206,6 +250,22 @@ export function ContactForm() {
             <FieldError id="cf-message-err">{errors.message}</FieldError>
           )}
         </Field>
+
+        {/* Submit error */}
+        {submitError && (
+          <p
+            role="alert"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "11px",
+              letterSpacing: "0.08em",
+              color: "var(--color-error)",
+              marginTop: "8px",
+            }}
+          >
+            {submitError}
+          </p>
+        )}
 
         {/* Submit */}
         <button

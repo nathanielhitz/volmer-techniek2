@@ -166,7 +166,8 @@
         "nameRequired": "Naam is verplicht",
         "emailRequired": "E-mailadres is verplicht",
         "emailInvalid": "Vul een geldig e-mailadres in",
-        "messageRequired": "Bericht is verplicht"
+        "messageRequired": "Bericht is verplicht",
+        "submitFailed": "Verzenden mislukt. Probeer het later opnieuw."
       },
       "success": {
         "title": "Aanvraag ontvangen",

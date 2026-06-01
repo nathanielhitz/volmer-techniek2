@@ -166,7 +166,8 @@
         "nameRequired": "Name is required",
         "emailRequired": "Email address is required",
         "emailInvalid": "Please enter a valid email address",
-        "messageRequired": "Message is required"
+        "messageRequired": "Message is required",
+        "submitFailed": "Failed to send. Please try again later."
       },
       "success": {
         "title": "Request received",

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
@@ -53,6 +54,36 @@ export async function Hero() {
               zIndex: 1,
             }}
           />
+
+          {/* Hero photo — right panel */}
+          <div className="hero-photo-wrapper" aria-hidden="true">
+            <Image
+              src="/hero-onsite-machining-volmer-techniek.jpeg"
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 1023px) 100vw, 48vw"
+              quality={85}
+              style={{
+                objectFit: "cover",
+                objectPosition: "center 22%",
+                animation: "heroFadeIn 1.0s ease-out both",
+              }}
+            />
+            {/* Left-edge blend: photo → dark background */}
+            <div
+              style={{
+                position: "absolute",
+                inset: "0 auto 0 0",
+                width: "55%",
+                background:
+                  "linear-gradient(90deg, #0a0a0b 0%, rgba(10,10,11,0.7) 45%, transparent 100%)",
+                zIndex: 1,
+              }}
+            />
+            {/* Subtle dark overlay for legibility */}
+            <div className="hero-photo-overlay" style={{ position: "absolute", inset: 0, zIndex: 1 }} />
+          </div>
         </div>
 
         {/* Hero eyebrow — hidden on mobile, visible from sm */}
@@ -154,8 +185,31 @@ export async function Hero() {
           0%   { transform: scale(1.06); }
           100% { transform: scale(1.12); }
         }
+        @keyframes heroFadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
         @media (prefers-reduced-motion: reduce) {
           [style*="kenburns"] { animation: none !important; }
+          [style*="heroFadeIn"] { animation: none !important; }
+        }
+        /* Hero photo — mobile: volledige breedte, desktop: rechterhelft */
+        .hero-photo-wrapper {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          z-index: 0;
+        }
+        .hero-photo-overlay {
+          background: rgba(0, 0, 0, 0.52);
+        }
+        @media (min-width: 1024px) {
+          .hero-photo-wrapper {
+            left: 52%;
+          }
+          .hero-photo-overlay {
+            background: rgba(0, 0, 0, 0.38);
+          }
         }
         @media (min-width: 768px) {
           .hero-eyebrow-abs { left: 40px !important; }
