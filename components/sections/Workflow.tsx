@@ -1,20 +1,27 @@
+import { getTranslations } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { ChapterLabel } from "@/components/ui/ChapterLabel";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { content, type WorkflowStep } from "@/content";
 
-const { workflow } = content;
+type WorkflowStep = {
+  number: string;
+  title: string;
+  description: string;
+};
 
-export function Workflow() {
+export async function Workflow() {
+  const t = await getTranslations("workflow");
+  const steps = t.raw("steps") as WorkflowStep[];
+
   return (
     <Section id="werkwijze" bordered>
       <Container>
         {/* ── Section header ────────────────────────────────────────── */}
         <div className="wf-header">
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-            <ChapterLabel number="03" name="Werkwijze" />
-            <Eyebrow>{workflow.eyebrow}</Eyebrow>
+            <ChapterLabel number="03" name={t("chapterName")} />
+            <Eyebrow>{t("eyebrow")}</Eyebrow>
           </div>
           <h2
             style={{
@@ -28,13 +35,13 @@ export function Workflow() {
               maxWidth: "18ch",
             }}
           >
-            {workflow.heading}
+            {t("heading")}
           </h2>
         </div>
 
         {/* ── Steps list ────────────────────────────────────────────── */}
         <div style={{ borderTop: "1px solid var(--border-rule-strong)" }}>
-          {workflow.steps.map((step) => (
+          {steps.map((step) => (
             <StepRow key={step.number} step={step} />
           ))}
         </div>

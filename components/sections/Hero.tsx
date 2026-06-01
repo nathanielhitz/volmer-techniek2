@@ -1,9 +1,10 @@
+import { getTranslations } from "next-intl/server";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { content } from "@/content";
 
-const { hero } = content;
+export async function Hero() {
+  const t = await getTranslations("hero");
+  const certificates = t.raw("certificates") as string[];
 
-export function Hero() {
   return (
     <>
       {/* Hero */}
@@ -64,7 +65,7 @@ export function Hero() {
             zIndex: 5,
           }}
         >
-          <Eyebrow>{hero.eyebrow}</Eyebrow>
+          <Eyebrow>{t("eyebrow")}</Eyebrow>
         </div>
 
         {/* Hero content */}
@@ -102,9 +103,9 @@ export function Hero() {
               }}
               className="lg:hero-h1"
             >
-              {hero.headline.line1}
+              {t("headline.line1")}
               <br />
-              {hero.headline.line2}{" "}
+              {t("headline.line2")}{" "}
               <span
                 style={{
                   color: "var(--color-steel-30)",
@@ -113,7 +114,7 @@ export function Hero() {
                   marginTop: "8px",
                 }}
               >
-                {hero.headline.accent}
+                {t("headline.accent")}
               </span>
             </h1>
 
@@ -135,12 +136,12 @@ export function Hero() {
                   margin: 0,
                 }}
               >
-                {hero.lede}
+                {t("lede")}
               </p>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-                <PrimaryCTA label={hero.cta.primary} />
-                <GhostCTA label={hero.cta.ghost} />
+                <PrimaryCTA label={t("cta.primary")} />
+                <GhostCTA label={t("cta.ghost")} />
               </div>
             </div>
           </div>
@@ -182,7 +183,7 @@ export function Hero() {
       `}</style>
 
       {/* Certificate strip */}
-      <CertificateStrip items={hero.certificates} />
+      <CertificateStrip items={certificates} />
     </>
   );
 }
@@ -206,7 +207,8 @@ function PrimaryCTA({ label }: { label: string }) {
         letterSpacing: "0.12em",
         textTransform: "uppercase",
         fontWeight: 500,
-        transition: "background 0.28s cubic-bezier(.2,.7,.2,1), color 0.28s cubic-bezier(.2,.7,.2,1)",
+        transition:
+          "background 0.28s cubic-bezier(.2,.7,.2,1), color 0.28s cubic-bezier(.2,.7,.2,1)",
         width: "100%",
         maxWidth: "360px",
         cursor: "pointer",
@@ -220,7 +222,10 @@ function PrimaryCTA({ label }: { label: string }) {
         viewBox="0 0 16 16"
         fill="none"
         aria-hidden="true"
-        style={{ transition: "transform 0.28s cubic-bezier(.2,.7,.2,1)", flexShrink: 0 }}
+        style={{
+          transition: "transform 0.28s cubic-bezier(.2,.7,.2,1)",
+          flexShrink: 0,
+        }}
       >
         <path
           d="M3 8h10M9 4l4 4-4 4"
@@ -268,7 +273,7 @@ function GhostCTA({ label }: { label: string }) {
   );
 }
 
-function CertificateStrip({ items }: { items: readonly string[] }) {
+function CertificateStrip({ items }: { items: string[] }) {
   return (
     <div
       style={{

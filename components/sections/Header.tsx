@@ -2,11 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { content } from "@/content";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
-const { header } = content;
+type NavItem = { label: string; href: string };
 
 export function Header() {
+  const t = useTranslations("header");
+  const navItems = t.raw("nav.items") as NavItem[];
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -64,7 +68,8 @@ export function Header() {
           left: 0,
           right: 0,
           zIndex: 120,
-          transition: "background 0.4s cubic-bezier(.2,.7,.2,1), border-color 0.4s cubic-bezier(.2,.7,.2,1), backdrop-filter 0.4s cubic-bezier(.2,.7,.2,1)",
+          transition:
+            "background 0.4s cubic-bezier(.2,.7,.2,1), border-color 0.4s cubic-bezier(.2,.7,.2,1), backdrop-filter 0.4s cubic-bezier(.2,.7,.2,1)",
           background: isScrolled
             ? "rgba(20,20,22,0.95)"
             : "linear-gradient(180deg, rgba(10,10,11,0.92) 0%, rgba(10,10,11,0.55) 100%)",
@@ -90,7 +95,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            aria-label={header.logoAriaLabel}
+            aria-label={t("logoAriaLabel")}
             style={{
               display: "flex",
               alignItems: "center",
@@ -118,27 +123,33 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav
-            aria-label={header.nav.ariaLabel}
+            aria-label={t("nav.ariaLabel")}
             className="hidden lg:flex"
             style={{ alignItems: "center", gap: "4px" }}
           >
-            {header.nav.items.map((item) => (
+            {navItems.map((item) => (
               <NavLink key={item.href} href={item.href}>
                 {item.label}
               </NavLink>
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex" style={{ alignItems: "center" }}>
-            <DesktopCTA label={header.cta.desktop} />
+          {/* Desktop right group: language switcher + CTA */}
+          <div
+            className="hidden lg:flex"
+            style={{ alignItems: "center", gap: "20px" }}
+          >
+            <LanguageSwitcher />
+            <DesktopCTA label={t("cta.desktop")} />
           </div>
 
-          {/* Hamburger — aria-label wisselt op basis van open-state */}
+          {/* Hamburger */}
           <button
             ref={hamburgerRef}
             className="lg:hidden"
-            aria-label={mobileOpen ? header.mobileMenu.closeLabel : header.mobileMenu.openLabel}
+            aria-label={
+              mobileOpen ? t("mobileMenu.closeLabel") : t("mobileMenu.openLabel")
+            }
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav-panel"
             onClick={() => setMobileOpen(true)}
@@ -199,7 +210,7 @@ export function Header() {
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-label={header.mobileMenu.panelAriaLabel}
+        aria-label={t("mobileMenu.panelAriaLabel")}
         className="lg:hidden"
         style={{
           position: "fixed",
@@ -256,7 +267,7 @@ export function Header() {
 
           <button
             ref={closeButtonRef}
-            aria-label={header.mobileMenu.closeLabel}
+            aria-label={t("mobileMenu.closeLabel")}
             onClick={() => setMobileOpen(false)}
             style={{
               width: "44px",
@@ -278,7 +289,7 @@ export function Header() {
 
         {/* Nav links */}
         <nav
-          aria-label={header.mobileMenu.navAriaLabel}
+          aria-label={t("mobileMenu.navAriaLabel")}
           style={{
             flex: 1,
             display: "flex",
@@ -288,7 +299,7 @@ export function Header() {
             overflowY: "auto",
           }}
         >
-          {header.nav.items.map((item) => (
+          {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -315,6 +326,17 @@ export function Header() {
               {item.label}
             </a>
           ))}
+
+          {/* Language switcher in mobile panel */}
+          <div
+            style={{
+              paddingTop: "24px",
+              borderTop: "1px solid var(--color-graphite)",
+              marginTop: "8px",
+            }}
+          >
+            <LanguageSwitcher />
+          </div>
         </nav>
 
         {/* Phone CTA */}
@@ -430,7 +452,8 @@ function DesktopCTA({ label }: { label: string }) {
         letterSpacing: "0.1em",
         textTransform: "uppercase",
         color: "var(--color-ash)",
-        transition: "border-color 0.25s cubic-bezier(.2,.7,.2,1), color 0.25s cubic-bezier(.2,.7,.2,1)",
+        transition:
+          "border-color 0.25s cubic-bezier(.2,.7,.2,1), color 0.25s cubic-bezier(.2,.7,.2,1)",
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = "var(--color-molten)";

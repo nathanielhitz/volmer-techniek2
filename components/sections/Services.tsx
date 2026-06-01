@@ -1,14 +1,21 @@
+import { getTranslations } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { ChapterLabel } from "@/components/ui/ChapterLabel";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { content, type ServiceItem } from "@/content";
 
-const { services } = content;
+type ServiceItem = {
+  number: string;
+  title: string;
+  description: string;
+  tacticalLabel?: string;
+};
 
-export function Services() {
-  const featured = services.items.slice(0, 2);
-  const compact = services.items.slice(2);
+export async function Services() {
+  const t = await getTranslations("services");
+  const items = t.raw("items") as ServiceItem[];
+  const featured = items.slice(0, 2);
+  const compact = items.slice(2);
 
   return (
     <Section id="diensten" bordered>
@@ -16,8 +23,8 @@ export function Services() {
         {/* ── Section header ─────────────────────────────────────────── */}
         <div className="srv-header">
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-            <ChapterLabel number="02" name="Diensten" />
-            <Eyebrow>{services.eyebrow}</Eyebrow>
+            <ChapterLabel number="02" name={t("chapterName")} />
+            <Eyebrow>{t("eyebrow")}</Eyebrow>
           </div>
           <h2
             style={{
@@ -31,7 +38,7 @@ export function Services() {
               maxWidth: "18ch",
             }}
           >
-            {services.heading}
+            {t("heading")}
           </h2>
         </div>
 
@@ -150,7 +157,6 @@ export function Services() {
 function FeaturedCard({ item }: { item: ServiceItem }) {
   return (
     <div className="srv-featured-card">
-      {/* Large Molten number — visueel anker */}
       <span
         style={{
           fontFamily: "var(--font-mono)",

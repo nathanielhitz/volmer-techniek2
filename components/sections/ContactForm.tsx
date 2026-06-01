@@ -1,10 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { content } from "@/content";
-
-const { contact } = content;
-const { form } = contact;
+import { useTranslations } from "next-intl";
 
 interface FormState {
   name: string;
@@ -20,14 +17,19 @@ interface FormErrors {
   message?: string;
 }
 
+type TypeOption = { value: string; label: string };
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function ContactForm() {
+  const t = useTranslations("contact.form");
+  const typeOptions = t.raw("typeOptions") as TypeOption[];
+
   const [values, setValues] = useState<FormState>({
     name: "",
     email: "",
     phone: "",
-    type: form.typeOptions[0].value,
+    type: typeOptions[0].value,
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -40,10 +42,10 @@ export function ContactForm() {
 
   function validate(): FormErrors {
     const e: FormErrors = {};
-    if (!values.name.trim()) e.name = "Naam is verplicht";
-    if (!values.email.trim()) e.email = "E-mailadres is verplicht";
-    else if (!EMAIL_RE.test(values.email)) e.email = "Vul een geldig e-mailadres in";
-    if (!values.message.trim()) e.message = "Bericht is verplicht";
+    if (!values.name.trim()) e.name = t("errors.nameRequired");
+    if (!values.email.trim()) e.email = t("errors.emailRequired");
+    else if (!EMAIL_RE.test(values.email)) e.email = t("errors.emailInvalid");
+    if (!values.message.trim()) e.message = t("errors.messageRequired");
     return e;
   }
 
@@ -52,7 +54,6 @@ export function ContactForm() {
   ) {
     const { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
-    // Wis fout zodra gebruiker het veld aanpast
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -69,7 +70,6 @@ export function ContactForm() {
       return;
     }
     setPending(true);
-    // Backend koppeling volgt — voorlopig log
     console.log("Contact form submit:", values);
     setTimeout(() => {
       setPending(false);
@@ -95,7 +95,7 @@ export function ContactForm() {
             marginBottom: "16px",
           }}
         >
-          Aanvraag ontvangen
+          {t("success.title")}
         </p>
         <p
           style={{
@@ -105,7 +105,7 @@ export function ContactForm() {
             color: "var(--color-steel-30)",
           }}
         >
-          Bedankt voor uw aanvraag. Wij nemen zo snel mogelijk contact met u op.
+          {t("success.message")}
         </p>
       </div>
     );
@@ -115,11 +115,7 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} noValidate>
       <div className="cf-fields">
         {/* Naam */}
-        <Field
-          label="Naam"
-          error={errors.name}
-          required
-        >
+        <Field label={t("nameLabel")} error={errors.name} required>
           <input
             ref={nameRef}
             id="cf-name"
@@ -130,7 +126,7 @@ export function ContactForm() {
             aria-describedby={errors.name ? "cf-name-err" : undefined}
             value={values.name}
             onChange={handleChange}
-            placeholder={form.namePlaceholder}
+            placeholder={t("namePlaceholder")}
             className={`cf-input${errors.name ? " cf-input--error" : ""}`}
           />
           {errors.name && (
@@ -139,11 +135,7 @@ export function ContactForm() {
         </Field>
 
         {/* E-mail */}
-        <Field
-          label="E-mailadres"
-          error={errors.email}
-          required
-        >
+        <Field label={t("emailLabel")} error={errors.email} required>
           <input
             ref={emailRef}
             id="cf-email"
@@ -154,7 +146,7 @@ export function ContactForm() {
             aria-describedby={errors.email ? "cf-email-err" : undefined}
             value={values.email}
             onChange={handleChange}
-            placeholder={form.emailPlaceholder}
+            placeholder={t("emailPlaceholder")}
             className={`cf-input${errors.email ? " cf-input--error" : ""}`}
           />
           {errors.email && (
@@ -163,10 +155,7 @@ export function ContactForm() {
         </Field>
 
         {/* Telefoon — optioneel */}
-        <Field
-          label="Telefoonnummer"
-          optional={form.phoneOptionalLabel}
-        >
+        <Field label={t("phoneLabel")} optional={t("phoneOptionalLabel")}>
           <input
             id="cf-phone"
             name="phone"
@@ -174,13 +163,13 @@ export function ContactForm() {
             autoComplete="tel"
             value={values.phone}
             onChange={handleChange}
-            placeholder={form.phonePlaceholder}
+            placeholder={t("phonePlaceholder")}
             className="cf-input"
           />
         </Field>
 
         {/* Type aanvraag */}
-        <Field label={form.typeLabel}>
+        <Field label={t("typeLabel")}>
           <div className="cf-select-wrap">
             <select
               id="cf-type"
@@ -188,9 +177,9 @@ export function ContactForm() {
               value={values.type}
               onChange={handleChange}
               className="cf-select"
-              aria-label={form.typeLabel}
+              aria-label={t("typeLabel")}
             >
-              {form.typeOptions.map((opt) => (
+              {typeOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}
                 </option>
@@ -200,11 +189,7 @@ export function ContactForm() {
         </Field>
 
         {/* Bericht */}
-        <Field
-          label="Bericht"
-          error={errors.message}
-          required
-        >
+        <Field label={t("messageLabel")} error={errors.message} required>
           <textarea
             ref={messageRef}
             id="cf-message"
@@ -214,7 +199,7 @@ export function ContactForm() {
             aria-describedby={errors.message ? "cf-message-err" : undefined}
             value={values.message}
             onChange={handleChange}
-            placeholder={form.messagePlaceholder}
+            placeholder={t("messagePlaceholder")}
             className={`cf-input cf-textarea${errors.message ? " cf-input--error" : ""}`}
           />
           {errors.message && (
@@ -229,7 +214,7 @@ export function ContactForm() {
           className="cf-submit"
           style={{ opacity: pending ? 0.6 : 1, cursor: pending ? "wait" : "pointer" }}
         >
-          <span>{form.submitLabel}</span>
+          <span>{t("submitLabel")}</span>
           <svg
             className="cf-arrow"
             width="16"
@@ -424,10 +409,7 @@ function Field({
 }) {
   return (
     <div className="cf-field">
-      <label
-        className={`cf-label${error ? " cf-label--error" : ""}`}
-        htmlFor={undefined}
-      >
+      <label className={`cf-label${error ? " cf-label--error" : ""}`}>
         {label}
         {optional && (
           <span className="cf-label-optional">— {optional}</span>

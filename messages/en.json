@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "title": "Volmer Techniek B.V. — Precision machining on-site and in the workshop",
+    "description": "Volmer Techniek provides on-site machining, industrial repairs and precision machining in Puttershoek. Fast response, precise work, minimal downtime.",
+    "keywords": "on-site machining, precision machining, industrial repairs, machine building, Puttershoek, retrofit, preventive maintenance"
+  },
+  "common": {
+    "skip": "Skip to main content"
+  },
+  "languageSwitcher": {
+    "ariaLabel": "Select language"
+  },
+  "header": {
+    "logoAriaLabel": "Volmer Techniek — back to home",
+    "nav": {
+      "ariaLabel": "Main navigation",
+      "items": [
+        { "label": "Services", "href": "#diensten" },
+        { "label": "Approach", "href": "#werkwijze" },
+        { "label": "About", "href": "#over-ons" },
+        { "label": "Contact", "href": "#contact" }
+      ]
+    },
+    "mobileMenu": {
+      "openLabel": "Open menu",
+      "closeLabel": "Close menu",
+      "panelAriaLabel": "Navigation menu",
+      "navAriaLabel": "Mobile navigation"
+    },
+    "cta": {
+      "desktop": "Call now"
+    }
+  },
+  "hero": {
+    "eyebrow": "Puttershoek, NL · Precision machining",
+    "headline": {
+      "line1": "Precision machining",
+      "line2": "on-site and in",
+      "accent": "the workshop."
+    },
+    "lede": "Accurate machining, repair and modification. We minimise downtime, on-site or in our workshop in Puttershoek.",
+    "cta": {
+      "primary": "Request service",
+      "ghost": "View services"
+    },
+    "certificates": ["VCA Certified", "Member Koninklijke Metaalunie"]
+  },
+  "services": {
+    "chapterName": "Services",
+    "eyebrow": "What we do",
+    "heading": "Six disciplines. One point of contact.",
+    "items": [
+      {
+        "number": "01",
+        "title": "On-site machining",
+        "description": "When a machine cannot be brought to the workshop, we bring the machining to the machine. Turning, milling and boring directly on-site, without dismantling, without transport and without unnecessary downtime.",
+        "tacticalLabel": "ON-SITE · NO DISMANTLING"
+      },
+      {
+        "number": "02",
+        "title": "Workshop machining",
+        "description": "Precision turning, milling and boring for custom parts, replacement parts and restoration work. Tolerances down to ±0.02mm. From single pieces to small series.",
+        "tacticalLabel": "TOL: ±0.02MM · SINGLE PIECE"
+      },
+      {
+        "number": "03",
+        "title": "Industrial repairs",
+        "description": "Fast diagnosis and repair of damaged or worn machine parts, on-site or in our workshop. From broken shafts to worn bearing blocks. Focused on minimal downtime and reliable delivery."
+      },
+      {
+        "number": "04",
+        "title": "Machine building and custom work",
+        "description": "Design and realisation of custom parts and solutions for industrial applications. From one-off replacement parts to complete sub-assemblies. We think along from drawing to delivery."
+      },
+      {
+        "number": "05",
+        "title": "Retrofit and modernisation",
+        "description": "Adapting, improving or updating existing machines without full replacement. We bring outdated installations up to the required level, more cost-effective than new construction and preserving what works."
+      },
+      {
+        "number": "06",
+        "title": "Preventive maintenance",
+        "description": "Regular inspection and maintenance of critical machine parts to prevent unplanned downtime. We draw up a maintenance programme that fits your production cycle."
+      }
+    ]
+  },
+  "workflow": {
+    "chapterName": "Approach",
+    "eyebrow": "How we work",
+    "heading": "Five steps. One clear approach.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Assessment",
+        "description": "We map the situation: machine type, nature of the problem, desired outcome and any limitations on-site or in scheduling."
+      },
+      {
+        "number": "02",
+        "title": "Technical evaluation",
+        "description": "Based on the assessment, we determine the right approach, required equipment, lead time and any risks. You receive a concrete quote for approval."
+      },
+      {
+        "number": "03",
+        "title": "Execution on-site or in workshop",
+        "description": "We carry out the work where it is most efficient: at your location or in our workshop in Puttershoek. No surprises, clear communication throughout the process."
+      },
+      {
+        "number": "04",
+        "title": "Inspection and delivery",
+        "description": "Before delivery, we check the work against specifications and functionality. You receive a report of the completed work."
+      },
+      {
+        "number": "05",
+        "title": "Advice for follow-up and maintenance",
+        "description": "Where relevant, we advise on preventive maintenance, re-inspection intervals or possible improvements to prevent recurrence of the problem."
+      }
+    ]
+  },
+  "about": {
+    "chapterName": "About",
+    "eyebrow": "Who we are",
+    "heading": "Craftsmanship from Puttershoek.",
+    "dropCapLetter": "V",
+    "intro": "Volmer Techniek is a technical metalworking company specialising in precision machining. We turn, mill and bore for heavy industry, on-site at the client or in our workshop in Puttershoek.",
+    "body": "One point of contact for all your precision machining. Whether it is an urgent job on a stopped production line or precision custom work for a new installation, we deliver what we agree.",
+    "facts": [
+      { "value": "6", "label": "Disciplines" },
+      { "value": "24/7", "label": "Available" },
+      { "value": "100%", "label": "Custom" },
+      { "value": "NL", "label": "Own workshop" }
+    ]
+  },
+  "contact": {
+    "chapterName": "Contact",
+    "eyebrow": "Get in touch",
+    "heading": "Discuss your technical challenge.",
+    "intro": "Do you have a stopped machine, need a repair or a custom solution? Get in touch and we will respond quickly.",
+    "address": "Pieter van der Wallstraat 4, 3297 ES Puttershoek",
+    "phone": "+31 6 53 53 77 47",
+    "email": "info@volmertechniek.com",
+    "channels": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "form": {
+      "nameLabel": "Name",
+      "emailLabel": "Email address",
+      "phoneLabel": "Phone number",
+      "messageLabel": "Message",
+      "namePlaceholder": "Name",
+      "emailPlaceholder": "Email address",
+      "phonePlaceholder": "Phone number",
+      "phoneOptionalLabel": "optional",
+      "messagePlaceholder": "Describe your question or challenge",
+      "typeLabel": "Request type",
+      "typeOptions": [
+        { "value": "on-site", "label": "On-site machining" },
+        { "value": "werkplaats", "label": "Workshop machining" },
+        { "value": "reparatie", "label": "Industrial repair" },
+        { "value": "maatwerk", "label": "Machine building and custom work" },
+        { "value": "overig", "label": "Other" }
+      ],
+      "submitLabel": "Send request",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email address is required",
+        "emailInvalid": "Please enter a valid email address",
+        "messageRequired": "Message is required"
+      },
+      "success": {
+        "title": "Request received",
+        "message": "Thank you for your request. We will get back to you as soon as possible."
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Precision machining on-site and in the workshop.",
+    "kvk": "CoC 90413962",
+    "privacy": { "label": "Privacy policy", "href": "#" },
+    "cookie": { "label": "Cookie policy", "href": "#" },
+    "columns": {
+      "services": "Services",
+      "contact": "Contact"
+    },
+    "channels": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "builtBy": "Built by HitzDigital"
+  }
+}

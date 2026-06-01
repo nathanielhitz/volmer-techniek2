@@ -1,21 +1,7 @@
-import { Header } from "@/components/sections/Header";
-import { Hero } from "@/components/sections/Hero";
-import { Services } from "@/components/sections/Services";
-import { Workflow } from "@/components/sections/Workflow";
-import { About } from "@/components/sections/About";
-import { Contact } from "@/components/sections/Contact";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <>
-      <Header />
-      <main id="main-content">
-        <Hero />
-        <Services />
-        <Workflow />
-        <About />
-        <Contact />
-      </main>
-    </>
-  );
+// The middleware redirects all root requests to the default locale (/nl).
+// This page acts as a fallback in case middleware is bypassed.
+export default function RootPage() {
+  redirect("/nl");
 }

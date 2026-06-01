@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "title": "Volmer Techniek B.V. — Verspanende techniek op locatie en in de werkplaats",
+    "description": "Volmer Techniek levert on-site machining, industriële reparaties en verspanende werkzaamheden in Puttershoek. Snel schakelen, precies werken, minimale stilstand.",
+    "keywords": "on-site machining, verspanende techniek, industriële reparaties, machinebouw, Puttershoek, retrofit, preventief onderhoud"
+  },
+  "common": {
+    "skip": "Naar hoofdinhoud"
+  },
+  "languageSwitcher": {
+    "ariaLabel": "Taal selecteren"
+  },
+  "header": {
+    "logoAriaLabel": "Volmer Techniek — terug naar home",
+    "nav": {
+      "ariaLabel": "Hoofdnavigatie",
+      "items": [
+        { "label": "Diensten", "href": "#diensten" },
+        { "label": "Werkwijze", "href": "#werkwijze" },
+        { "label": "Over ons", "href": "#over-ons" },
+        { "label": "Contact", "href": "#contact" }
+      ]
+    },
+    "mobileMenu": {
+      "openLabel": "Menu openen",
+      "closeLabel": "Menu sluiten",
+      "panelAriaLabel": "Navigatiemenu",
+      "navAriaLabel": "Mobiele navigatie"
+    },
+    "cta": {
+      "desktop": "Bel direct"
+    }
+  },
+  "hero": {
+    "eyebrow": "Puttershoek, NL · Verspanende techniek",
+    "headline": {
+      "line1": "Verspanende techniek",
+      "line2": "op locatie en in",
+      "accent": "de werkplaats."
+    },
+    "lede": "Nauwkeurig verspanen, herstellen en aanpassen. Wij beperken stilstand, op locatie of in onze werkplaats in Puttershoek.",
+    "cta": {
+      "primary": "Service aanvragen",
+      "ghost": "Bekijk diensten"
+    },
+    "certificates": ["VCA Gecertificeerd", "Lid Koninklijke Metaalunie"]
+  },
+  "services": {
+    "chapterName": "Diensten",
+    "eyebrow": "Wat wij doen",
+    "heading": "Zes disciplines. Één aanspreekpunt.",
+    "items": [
+      {
+        "number": "01",
+        "title": "On-site machining",
+        "description": "Wanneer een machine niet naar de werkplaats kan, brengen wij de bewerking naar de machine. Draai-, frees- en kotterwerk direct op locatie, zonder demontage, zonder transport en zonder onnodige stilstand.",
+        "tacticalLabel": "LOCATIE · GEEN DEMONTAGE"
+      },
+      {
+        "number": "02",
+        "title": "Verspaning in eigen werkplaats",
+        "description": "Nauwkeurig draai-, frees- en kotterwerk voor maatwerk-onderdelen, vervangingsonderdelen en herstelwerk. Toleranties tot ±0.02mm. Van enkelstuks tot kleine series.",
+        "tacticalLabel": "TOL: ±0.02MM · ENKELSTUKS"
+      },
+      {
+        "number": "03",
+        "title": "Industriële reparaties",
+        "description": "Snelle diagnose en herstel van beschadigde of versleten machineonderdelen, op locatie of in onze werkplaats. Van gebroken assen tot versleten lagerblokken. Gericht op minimale stilstand en betrouwbare oplevering."
+      },
+      {
+        "number": "04",
+        "title": "Machinebouw en maatwerk",
+        "description": "Ontwerp en realisatie van maatwerkonderdelen en oplossingen voor industriële toepassingen. Van eenmalige vervangingsonderdelen tot complete sub-assemblages. Wij denken mee van tekening tot oplevering."
+      },
+      {
+        "number": "05",
+        "title": "Retrofit en modernisering",
+        "description": "Bestaande machines aanpassen, verbeteren of updaten zonder volledige vervanging. Wij brengen verouderde installaties op het gewenste niveau, kostenefficiënter dan nieuwbouw en met behoud van wat werkt."
+      },
+      {
+        "number": "06",
+        "title": "Preventief onderhoud",
+        "description": "Regelmatige inspectie en onderhoud van kritieke machineonderdelen om ongeplande stilstand te voorkomen. Wij stellen een onderhoudsprogramma op dat past bij uw productiecyclus."
+      }
+    ]
+  },
+  "workflow": {
+    "chapterName": "Werkwijze",
+    "eyebrow": "Hoe wij werken",
+    "heading": "Vijf stappen. Eén heldere aanpak.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Inventarisatie",
+        "description": "We brengen de situatie in kaart: type machine, aard van het probleem, gewenste uitkomst en eventuele beperkingen op locatie of in tijdsplanning."
+      },
+      {
+        "number": "02",
+        "title": "Technische beoordeling",
+        "description": "Op basis van de inventarisatie bepalen we de juiste aanpak, benodigde apparatuur, doorlooptijd en eventuele risico's. U krijgt een concrete offerte voor akkoord."
+      },
+      {
+        "number": "03",
+        "title": "Uitvoering op locatie of in werkplaats",
+        "description": "Wij voeren het werk uit waar dat het meest efficiënt is, bij u op locatie of in onze werkplaats in Puttershoek. Geen verrassingen, duidelijke communicatie tijdens het proces."
+      },
+      {
+        "number": "04",
+        "title": "Controle en oplevering",
+        "description": "Voor oplevering controleren we de bewerking op specificaties en functionaliteit. U ontvangt een verslag van de uitgevoerde werkzaamheden."
+      },
+      {
+        "number": "05",
+        "title": "Advies voor vervolg en onderhoud",
+        "description": "Waar relevant adviseren we over preventief onderhoud, herinspectie-intervallen of mogelijke verbeteringen om herhaling van het probleem te voorkomen."
+      }
+    ]
+  },
+  "about": {
+    "chapterName": "Over ons",
+    "eyebrow": "Wie wij zijn",
+    "heading": "Vakmanschap uit Puttershoek.",
+    "dropCapLetter": "V",
+    "intro": "Volmer Techniek is een technisch metaalbewerkingsbedrijf gespecialiseerd in verspanende techniek. Wij draaien, frezen en kotteren voor de zware industrie, op locatie bij de klant of in onze werkplaats in Puttershoek.",
+    "body": "Eén aanspreekpunt voor al uw verspanende bewerkingen. Of het nu gaat om een spoedklus op een stilstaande productielijn of om nauwkeurig maatwerk voor een nieuwe installatie, wij leveren wat wij afspreken.",
+    "facts": [
+      { "value": "6", "label": "Disciplines" },
+      { "value": "24/7", "label": "Bereikbaar" },
+      { "value": "100%", "label": "Maatwerk" },
+      { "value": "NL", "label": "Eigen werkplaats" }
+    ]
+  },
+  "contact": {
+    "chapterName": "Contact",
+    "eyebrow": "Neem contact op",
+    "heading": "Bespreek uw technische uitdaging.",
+    "intro": "Heeft u een stilstaande machine, een reparatie of een maatwerkoplossing nodig? Neem contact op en wij reageren snel.",
+    "address": "Pieter van der Wallstraat 4, 3297 ES Puttershoek",
+    "phone": "+31 6 53 53 77 47",
+    "email": "info@volmertechniek.com",
+    "channels": {
+      "address": "Adres",
+      "phone": "Telefoon",
+      "email": "E-mail"
+    },
+    "form": {
+      "nameLabel": "Naam",
+      "emailLabel": "E-mailadres",
+      "phoneLabel": "Telefoonnummer",
+      "messageLabel": "Bericht",
+      "namePlaceholder": "Naam",
+      "emailPlaceholder": "E-mailadres",
+      "phonePlaceholder": "Telefoonnummer",
+      "phoneOptionalLabel": "optioneel",
+      "messagePlaceholder": "Beschrijf uw vraag of uitdaging",
+      "typeLabel": "Type aanvraag",
+      "typeOptions": [
+        { "value": "on-site", "label": "On-site machining" },
+        { "value": "werkplaats", "label": "Verspaning in werkplaats" },
+        { "value": "reparatie", "label": "Industriële reparatie" },
+        { "value": "maatwerk", "label": "Machinebouw en maatwerk" },
+        { "value": "overig", "label": "Overig" }
+      ],
+      "submitLabel": "Verstuur aanvraag",
+      "errors": {
+        "nameRequired": "Naam is verplicht",
+        "emailRequired": "E-mailadres is verplicht",
+        "emailInvalid": "Vul een geldig e-mailadres in",
+        "messageRequired": "Bericht is verplicht"
+      },
+      "success": {
+        "title": "Aanvraag ontvangen",
+        "message": "Bedankt voor uw aanvraag. Wij nemen zo snel mogelijk contact met u op."
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Verspanende techniek op locatie en in de werkplaats.",
+    "kvk": "KvK 90413962",
+    "privacy": { "label": "Privacybeleid", "href": "#" },
+    "cookie": { "label": "Cookiebeleid", "href": "#" },
+    "columns": {
+      "services": "Diensten",
+      "contact": "Contact"
+    },
+    "channels": {
+      "address": "Adres",
+      "phone": "Telefoon",
+      "email": "E-mail"
+    },
+    "builtBy": "Built by HitzDigital"
+  }
+}

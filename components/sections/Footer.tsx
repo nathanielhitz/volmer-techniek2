@@ -1,10 +1,17 @@
+import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
-import { content } from "@/content";
 
-const { footer, services, contact } = content;
+type ServiceItem = { number: string; title: string };
 
-export function Footer() {
+export async function Footer() {
+  const t = await getTranslations("footer");
+  const st = await getTranslations("services");
+  const ct = await getTranslations("contact");
+
+  const serviceItems = st.raw("items") as ServiceItem[];
   const year = new Date().getFullYear();
+  const privacyHref = (t.raw("privacy") as { href: string }).href;
+  const cookieHref = (t.raw("cookie") as { href: string }).href;
 
   return (
     <footer
@@ -60,7 +67,7 @@ export function Footer() {
                 maxWidth: "28ch",
               }}
             >
-              {footer.tagline}
+              {t("tagline")}
             </p>
             <span
               style={{
@@ -71,15 +78,15 @@ export function Footer() {
                 color: "var(--color-steel-60)",
               }}
             >
-              {footer.kvk}
+              {t("kvk")}
             </span>
           </div>
 
           {/* Diensten */}
           <div className="ft-diensten">
-            <p className="ft-col-header">Diensten</p>
-            <nav aria-label="Diensten">
-              {services.items.map((item) => (
+            <p className="ft-col-header">{t("columns.services")}</p>
+            <nav aria-label={t("columns.services")}>
+              {serviceItems.map((item) => (
                 <a key={item.number} href="#diensten" className="ft-link">
                   {item.title}
                 </a>
@@ -89,10 +96,10 @@ export function Footer() {
 
           {/* Contact */}
           <div className="ft-contact-col">
-            <p className="ft-col-header">Contact</p>
+            <p className="ft-col-header">{t("columns.contact")}</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
               <div>
-                <span className="ft-channel-label">Adres</span>
+                <span className="ft-channel-label">{t("channels.address")}</span>
                 <span
                   style={{
                     fontFamily: "var(--font-sans)",
@@ -102,22 +109,22 @@ export function Footer() {
                     display: "block",
                   }}
                 >
-                  {contact.address}
+                  {ct("address")}
                 </span>
               </div>
               <div>
-                <span className="ft-channel-label">Telefoon</span>
+                <span className="ft-channel-label">{t("channels.phone")}</span>
                 <a
-                  href={`tel:${contact.phone.replace(/\s/g, "")}`}
+                  href={`tel:${ct("phone").replace(/\s/g, "")}`}
                   className="ft-mono-link"
                 >
-                  {contact.phone}
+                  {ct("phone")}
                 </a>
               </div>
               <div>
-                <span className="ft-channel-label">E-mail</span>
-                <a href={`mailto:${contact.email}`} className="ft-mono-link">
-                  {contact.email}
+                <span className="ft-channel-label">{t("channels.email")}</span>
+                <a href={`mailto:${ct("email")}`} className="ft-mono-link">
+                  {ct("email")}
                 </a>
               </div>
             </div>
@@ -128,14 +135,14 @@ export function Footer() {
         <div className="ft-bottom">
           <span className="ft-meta">© {year} Volmer Techniek B.V.</span>
           <div className="ft-bottom-right">
-            <span className="ft-meta">{footer.kvk}</span>
-            <a href={footer.privacy.href} className="ft-meta ft-meta-link">
-              {footer.privacy.label}
+            <span className="ft-meta">{t("kvk")}</span>
+            <a href={privacyHref} className="ft-meta ft-meta-link">
+              {t("privacy.label")}
             </a>
-            <a href={footer.cookie.href} className="ft-meta ft-meta-link">
-              {footer.cookie.label}
+            <a href={cookieHref} className="ft-meta ft-meta-link">
+              {t("cookie.label")}
             </a>
-            <span className="ft-meta">Built by HitzDigital</span>
+            <span className="ft-meta">{t("builtBy")}</span>
           </div>
         </div>
       </Container>

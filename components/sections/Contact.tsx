@@ -1,21 +1,21 @@
+import { getTranslations } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { ChapterLabel } from "@/components/ui/ChapterLabel";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { content } from "@/content";
 import { ContactForm } from "@/components/sections/ContactForm";
 
-const { contact } = content;
+export async function Contact() {
+  const t = await getTranslations("contact");
 
-export function Contact() {
   return (
     <Section id="contact">
       <Container>
         {/* ── Section header ────────────────────────────────────────── */}
         <div className="ct-header">
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-            <ChapterLabel number="05" name="Contact" />
-            <Eyebrow>{contact.eyebrow}</Eyebrow>
+            <ChapterLabel number="05" name={t("chapterName")} />
+            <Eyebrow>{t("eyebrow")}</Eyebrow>
           </div>
           <h2
             style={{
@@ -29,7 +29,7 @@ export function Contact() {
               maxWidth: "18ch",
             }}
           >
-            {contact.heading}
+            {t("heading")}
           </h2>
         </div>
 
@@ -49,11 +49,11 @@ export function Contact() {
                 margin: "0 0 40px",
               }}
             >
-              {contact.intro}
+              {t("intro")}
             </p>
 
             <div className="ct-channels">
-              <ContactChannel label="Adres">
+              <ContactChannel label={t("channels.address")}>
                 <span
                   style={{
                     fontFamily: "var(--font-sans)",
@@ -63,13 +63,13 @@ export function Contact() {
                     whiteSpace: "pre-line",
                   }}
                 >
-                  {contact.address.replace(", ", ",\n")}
+                  {t("address").replace(", ", ",\n")}
                 </span>
               </ContactChannel>
 
-              <ContactChannel label="Telefoon">
+              <ContactChannel label={t("channels.phone")}>
                 <a
-                  href={`tel:${contact.phone.replace(/\s/g, "")}`}
+                  href={`tel:${t("phone").replace(/\s/g, "")}`}
                   className="ct-link"
                   style={{
                     fontFamily: "var(--font-mono)",
@@ -78,13 +78,13 @@ export function Contact() {
                     color: "var(--color-ash)",
                   }}
                 >
-                  {contact.phone}
+                  {t("phone")}
                 </a>
               </ContactChannel>
 
-              <ContactChannel label="E-mail">
+              <ContactChannel label={t("channels.email")}>
                 <a
-                  href={`mailto:${contact.email}`}
+                  href={`mailto:${t("email")}`}
                   className="ct-link"
                   style={{
                     fontFamily: "var(--font-mono)",
@@ -93,7 +93,7 @@ export function Contact() {
                     color: "var(--color-ash)",
                   }}
                 >
-                  {contact.email}
+                  {t("email")}
                 </a>
               </ContactChannel>
             </div>

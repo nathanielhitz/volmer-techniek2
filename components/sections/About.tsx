@@ -1,20 +1,25 @@
+import { getTranslations } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { ChapterLabel } from "@/components/ui/ChapterLabel";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { content, type AboutFact } from "@/content";
 
-const { about } = content;
+type AboutFact = { value: string; label: string };
 
-export function About() {
+export async function About() {
+  const t = await getTranslations("about");
+  const facts = t.raw("facts") as AboutFact[];
+  const dropCapLetter = t("dropCapLetter");
+  const intro = t("intro");
+
   return (
     <Section id="over-ons" bordered>
       <Container>
         {/* ── Section header ────────────────────────────────────────── */}
         <div className="ab-header">
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-            <ChapterLabel number="04" name="Over ons" />
-            <Eyebrow>{about.eyebrow}</Eyebrow>
+            <ChapterLabel number="04" name={t("chapterName")} />
+            <Eyebrow>{t("eyebrow")}</Eyebrow>
           </div>
           <h2
             style={{
@@ -28,7 +33,7 @@ export function About() {
               maxWidth: "18ch",
             }}
           >
-            {about.heading}
+            {t("heading")}
           </h2>
         </div>
 
@@ -48,8 +53,8 @@ export function About() {
                 margin: "0 0 28px",
               }}
             >
-              <span className="ab-dropcap">{about.dropCapLetter}</span>
-              {about.intro.slice(about.dropCapLetter.length)}
+              <span className="ab-dropcap">{dropCapLetter}</span>
+              {intro.slice(dropCapLetter.length)}
             </p>
             <p
               style={{
@@ -60,13 +65,13 @@ export function About() {
                 margin: 0,
               }}
             >
-              {about.body}
+              {t("body")}
             </p>
           </div>
 
           {/* Facts sidebar */}
           <div className="ab-facts">
-            {about.facts.map((fact) => (
+            {facts.map((fact) => (
               <FactRow key={fact.label} fact={fact} />
             ))}
           </div>
