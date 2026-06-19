@@ -3,6 +3,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Footer } from "@/components/sections/Footer";
+import { ScrollFX } from "@/components/ui/ScrollFX";
 
 const siteUrl = "https://www.volmertechniek.com";
 
@@ -68,6 +69,7 @@ export default async function LocaleLayout({
       <a href="#main-content" className="skip-link">
         {t("skip")}
       </a>
+      <ScrollFX />
       {children}
       <Footer />
     </NextIntlClientProvider>

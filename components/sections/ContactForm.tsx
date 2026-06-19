@@ -159,7 +159,7 @@ export function ContactForm() {
 
       <div className="cf-fields">
         {/* Naam */}
-        <Field label={t("nameLabel")} error={errors.name} required>
+        <Field label={t("nameLabel")} error={errors.name}>
           <input
             ref={nameRef}
             id="cf-name"
@@ -179,7 +179,7 @@ export function ContactForm() {
         </Field>
 
         {/* E-mail */}
-        <Field label={t("emailLabel")} error={errors.email} required>
+        <Field label={t("emailLabel")} error={errors.email}>
           <input
             ref={emailRef}
             id="cf-email"
@@ -233,7 +233,7 @@ export function ContactForm() {
         </Field>
 
         {/* Bericht */}
-        <Field label={t("messageLabel")} error={errors.message} required>
+        <Field label={t("messageLabel")} error={errors.message}>
           <textarea
             ref={messageRef}
             id="cf-message"
@@ -458,13 +458,11 @@ function Field({
   label,
   optional,
   error,
-  required,
   children,
 }: {
   label: string;
   optional?: string;
   error?: string;
-  required?: boolean;
   children: React.ReactNode;
 }) {
   return (

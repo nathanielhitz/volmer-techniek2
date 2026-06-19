@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { SparkField } from "@/components/sections/SparkField";
 
 export async function Hero() {
   const t = await getTranslations("hero");
@@ -84,6 +85,9 @@ export async function Hero() {
             {/* Subtle dark overlay for legibility */}
             <div className="hero-photo-overlay" style={{ position: "absolute", inset: 0, zIndex: 1 }} />
           </div>
+
+          {/* Vonken/ember-laag — stijgt op uit de hot zone, blijft achter de tekst */}
+          <SparkField />
         </div>
 
         {/* Hero eyebrow — hidden on mobile, visible from sm */}
@@ -170,9 +174,12 @@ export async function Hero() {
                 {t("lede")}
               </p>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <PrimaryCTA label={t("cta.primary")} />
-                <GhostCTA label={t("cta.ghost")} />
+                <div className="hero-secondary-actions">
+                  <PhoneCTA label={t("cta.phone")} />
+                  <GhostCTA label={t("cta.ghost")} />
+                </div>
               </div>
             </div>
           </div>
@@ -225,7 +232,8 @@ export async function Hero() {
           }
         }
         .hero-cta-primary:hover {
-          background: var(--color-ash) !important;
+          background: var(--color-molten) !important;
+          border-color: var(--color-molten) !important;
           color: var(--color-obsidian) !important;
         }
         .hero-cta-primary:hover .cta-arrow {
@@ -233,6 +241,46 @@ export async function Hero() {
         }
         .hero-cta-ghost:hover .ghost-line {
           width: 44px !important;
+        }
+        /* Secundaire acties: telefoon (mobiel) + ghost-link */
+        .hero-secondary-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+          align-items: flex-start;
+        }
+        .hero-cta-phone {
+          display: none;
+        }
+        @media (max-width: 1023px) {
+          .hero-cta-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 360px;
+            min-height: 48px;
+            padding: 14px 24px;
+            border: 1px solid var(--border-rule-strong);
+            color: var(--color-ash);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: border-color 0.25s cubic-bezier(.2,.7,.2,1), color 0.25s cubic-bezier(.2,.7,.2,1);
+          }
+          .hero-secondary-actions {
+            flex-direction: column;
+            gap: 22px;
+          }
+        }
+        @media (min-width: 640px) and (max-width: 1023px) {
+          .hero-secondary-actions {
+            flex-direction: row;
+            align-items: center;
+            gap: 28px;
+          }
+          .hero-cta-phone { width: auto; }
         }
       `}</style>
 
@@ -253,7 +301,7 @@ function PrimaryCTA({ label }: { label: string }) {
         justifyContent: "space-between",
         gap: "16px",
         padding: "20px 24px",
-        border: "1px solid var(--color-ash)",
+        border: "1px solid var(--color-molten)",
         color: "var(--color-ash)",
         background: "transparent",
         fontFamily: "var(--font-sans)",
@@ -262,7 +310,7 @@ function PrimaryCTA({ label }: { label: string }) {
         textTransform: "uppercase",
         fontWeight: 500,
         transition:
-          "background 0.28s cubic-bezier(.2,.7,.2,1), color 0.28s cubic-bezier(.2,.7,.2,1)",
+          "background 0.28s cubic-bezier(.2,.7,.2,1), color 0.28s cubic-bezier(.2,.7,.2,1), border-color 0.28s cubic-bezier(.2,.7,.2,1)",
         width: "100%",
         maxWidth: "360px",
         cursor: "pointer",
@@ -289,6 +337,22 @@ function PrimaryCTA({ label }: { label: string }) {
           strokeLinejoin="round"
         />
       </svg>
+    </a>
+  );
+}
+
+function PhoneCTA({ label }: { label: string }) {
+  return (
+    <a href="tel:+31653537747" className="hero-cta-phone">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+        <path
+          d="M3 2.5h2l1 3-1.5 1a8 8 0 0 0 3 3l1-1.5 3 1v2c0 .6-.4 1-1 1A10 10 0 0 1 2 3.5c0-.6.4-1 1-1Z"
+          stroke="var(--color-molten)"
+          strokeWidth="1"
+          strokeLinejoin="round"
+        />
+      </svg>
+      {label}
     </a>
   );
 }

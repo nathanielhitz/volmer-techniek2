@@ -40,10 +40,11 @@
     },
     "lede": "Accurate machining, repair and modification. We minimise downtime, on-site or in our workshop in Puttershoek.",
     "cta": {
-      "primary": "Request service",
+      "primary": "Request a quote",
+      "phone": "Call now",
       "ghost": "View services"
     },
-    "certificates": ["VCA Certified", "Member Koninklijke Metaalunie"]
+    "certificates": ["VCA Certified", "Member Koninklijke Metaalunie", "Available 24/7", "Own workshop"]
   },
   "services": {
     "chapterName": "Services",
@@ -174,6 +175,58 @@
         "message": "Thank you for your request. We will get back to you as soon as possible."
       }
     }
+  },
+  "work": {
+    "chapterName": "Work",
+    "eyebrow": "Work in focus",
+    "heading": "Where steel takes shape.",
+    "intro": "A selection of the work that passes through our hands every day — on-site and in our workshop in Puttershoek.",
+    "items": [
+      {
+        "number": "01",
+        "title": "On-site machining",
+        "tag": "ON-SITE · NO DISMANTLING",
+        "alt": "Portable machining setup on-site at an industrial machine"
+      },
+      {
+        "number": "02",
+        "title": "Precision machining",
+        "tag": "TOL. ±0.02 MM",
+        "alt": "Finished turned and milled component held to tight tolerances"
+      },
+      {
+        "number": "03",
+        "title": "Industrial repair",
+        "tag": "REPAIR · URGENT",
+        "alt": "Close-up of an industrial repair with a shower of sparks during grinding"
+      },
+      {
+        "number": "04",
+        "title": "Machine building & overhaul",
+        "tag": "OVERHAUL · CUSTOM",
+        "alt": "Large-scale overhaul of a machine construction in the workshop"
+      }
+    ]
+  },
+  "serviceArea": {
+    "chapterName": "Service area",
+    "eyebrow": "Where we work",
+    "heading": "On-site, wherever your machine runs.",
+    "body": "Our workshop is in Puttershoek, in the Hoeksche Waard. For on-site machining and urgent repairs we come to your location — in the region or anywhere in the Netherlands. That keeps downtime short and the lines of communication shorter.",
+    "coordinates": "51.80° N · 4.57° E",
+    "coordinatesLabel": "Puttershoek, NL",
+    "regionsLabel": "Coverage",
+    "cta": "Discuss your location",
+    "regions": [
+      { "name": "Hoeksche Waard", "note": "Own workshop" },
+      { "name": "Rotterdam-Rijnmond" },
+      { "name": "Drechtsteden" },
+      { "name": "All of the Netherlands", "note": "On-site machining & urgent repair" }
+    ]
+  },
+  "stickyCta": {
+    "call": "Call now",
+    "quote": "Quote"
   },
   "footer": {
     "tagline": "Precision machining on-site and in the workshop.",

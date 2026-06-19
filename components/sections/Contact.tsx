@@ -12,9 +12,9 @@ export async function Contact() {
     <Section id="contact">
       <Container>
         {/* ── Section header ────────────────────────────────────────── */}
-        <div className="ct-header">
+        <div className="ct-header" data-reveal>
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-            <ChapterLabel number="05" name={t("chapterName")} />
+            <ChapterLabel number="06" name={t("chapterName")} />
             <Eyebrow>{t("eyebrow")}</Eyebrow>
           </div>
           <h2
@@ -37,6 +37,7 @@ export async function Contact() {
         <div
           style={{ borderTop: "1px solid var(--border-rule-strong)" }}
           className="ct-body"
+          data-reveal
         >
           {/* Contactgegevens kolom */}
           <div className="ct-info">
