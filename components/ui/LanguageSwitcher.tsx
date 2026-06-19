@@ -5,8 +5,6 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { useTransition } from "react";
 import { routing } from "@/i18n/routing";
 
-const COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
-
 export function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
@@ -15,7 +13,8 @@ export function LanguageSwitcher() {
   const [isPending, startTransition] = useTransition();
 
   function handleLocaleChange(next: string) {
-    document.cookie = `NEXT_LOCALE=${next}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
+    // next-intl schrijft de NEXT_LOCALE-cookie zelf bij deze navigatie
+    // (zie syncLocaleCookie); max-age komt uit routing.localeCookie.
     startTransition(() => {
       router.replace(pathname, { locale: next });
     });

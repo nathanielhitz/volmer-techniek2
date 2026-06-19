@@ -40,10 +40,11 @@
     },
     "lede": "Nauwkeurig verspanen, herstellen en aanpassen. Wij beperken stilstand, op locatie of in onze werkplaats in Puttershoek.",
     "cta": {
-      "primary": "Service aanvragen",
+      "primary": "Offerte aanvragen",
+      "phone": "Bel direct",
       "ghost": "Bekijk diensten"
     },
-    "certificates": ["VCA Gecertificeerd", "Lid Koninklijke Metaalunie"]
+    "certificates": ["VCA Gecertificeerd", "Lid Koninklijke Metaalunie", "24/7 Bereikbaar", "Eigen werkplaats"]
   },
   "services": {
     "chapterName": "Diensten",
@@ -174,6 +175,58 @@
         "message": "Bedankt voor uw aanvraag. Wij nemen zo snel mogelijk contact met u op."
       }
     }
+  },
+  "work": {
+    "chapterName": "Werk",
+    "eyebrow": "Werk in beeld",
+    "heading": "Waar staal vorm krijgt.",
+    "intro": "Een greep uit de bewerkingen die dagelijks door onze handen gaan — op locatie en in de werkplaats in Puttershoek.",
+    "items": [
+      {
+        "number": "01",
+        "title": "On-site machining",
+        "tag": "ON-SITE · GEEN DEMONTAGE",
+        "alt": "Mobiele verspaningsopstelling op locatie bij een industriële machine"
+      },
+      {
+        "number": "02",
+        "title": "Precisieverspaning",
+        "tag": "TOL. ±0.02 MM",
+        "alt": "Afgewerkt gedraaid en gefreesd component met nauwe toleranties"
+      },
+      {
+        "number": "03",
+        "title": "Industriële reparatie",
+        "tag": "REPARATIE · SPOED",
+        "alt": "Industriële reparatie met vonkenregen tijdens slijpwerk in close-up"
+      },
+      {
+        "number": "04",
+        "title": "Machineconstructie & revisie",
+        "tag": "REVISIE · MAATWERK",
+        "alt": "Grootschalige revisie van een machineconstructie in de werkplaats"
+      }
+    ]
+  },
+  "serviceArea": {
+    "chapterName": "Servicegebied",
+    "eyebrow": "Waar wij werken",
+    "heading": "Op locatie, waar uw machine ook draait.",
+    "body": "Onze werkplaats staat in Puttershoek, in de Hoeksche Waard. Voor on-site machining en spoedreparaties komen wij naar uw locatie — in de regio of door heel Nederland. Zo blijft de stilstand kort en de lijnen kort.",
+    "coordinates": "51.80° N · 4.57° E",
+    "coordinatesLabel": "Puttershoek, NL",
+    "regionsLabel": "Werkgebied",
+    "cta": "Bespreek uw locatie",
+    "regions": [
+      { "name": "Hoeksche Waard", "note": "Eigen werkplaats" },
+      { "name": "Rotterdam-Rijnmond" },
+      { "name": "Drechtsteden" },
+      { "name": "Heel Nederland", "note": "On-site machining & spoedreparatie" }
+    ]
+  },
+  "stickyCta": {
+    "call": "Bel direct",
+    "quote": "Offerte"
   },
   "footer": {
     "tagline": "Verspanende techniek op locatie en in de werkplaats.",

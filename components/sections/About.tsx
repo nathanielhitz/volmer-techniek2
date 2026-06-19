@@ -16,7 +16,7 @@ export async function About() {
     <Section id="over-ons" bordered>
       <Container>
         {/* ── Section header ────────────────────────────────────────── */}
-        <div className="ab-header">
+        <div className="ab-header" data-reveal>
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
             <ChapterLabel number="04" name={t("chapterName")} />
             <Eyebrow>{t("eyebrow")}</Eyebrow>
@@ -41,6 +41,7 @@ export async function About() {
         <div
           style={{ borderTop: "1px solid var(--border-rule-strong)" }}
           className="ab-body"
+          data-reveal
         >
           {/* Tekst kolom */}
           <div className="ab-text">

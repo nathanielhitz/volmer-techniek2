@@ -46,9 +46,9 @@ export async function Services() {
     <Section id="diensten" bordered>
       <Container>
         {/* ── Section header ─────────────────────────────────────────── */}
-        <div className="srv-header">
+        <div className="srv-header" data-reveal>
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-            <ChapterLabel number="02" name={t("chapterName")} />
+            <ChapterLabel number="01" name={t("chapterName")} />
             <Eyebrow>{t("eyebrow")}</Eyebrow>
           </div>
           <h2
@@ -68,7 +68,7 @@ export async function Services() {
         </div>
 
         {/* ── Featured pair (01 + 02) ─────────────────────────────────── */}
-        <div className="srv-featured">
+        <div className="srv-featured" data-reveal>
           {featured.map((item) => (
             <FeaturedCard
               key={item.number}
@@ -79,7 +79,7 @@ export async function Services() {
         </div>
 
         {/* ── Compact list (03 – 06) ──────────────────────────────────── */}
-        <div style={{ borderTop: "1px solid var(--border-rule-strong)" }}>
+        <div style={{ borderTop: "1px solid var(--border-rule-strong)" }} data-reveal>
           {compact.map((item) => (
             <CompactRow
               key={item.number}
@@ -246,6 +246,82 @@ export async function Services() {
             overflow: hidden;
           }
         }
+
+        /* ── Tactical maatlijn (On-site machining, #01) ──────────────── */
+        .srv-dim {
+          position: absolute;
+          left: 28px;
+          right: 28px;
+          bottom: 22px;
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+          pointer-events: none;
+        }
+        .srv-dim-label {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          letter-spacing: 0.16em;
+          color: var(--color-ash);
+          text-shadow: 0 1px 6px rgba(10, 10, 11, 0.7);
+        }
+        .srv-dim-line {
+          display: flex;
+          align-items: center;
+          height: 9px;
+        }
+        .srv-dim-cap {
+          width: 1px;
+          height: 9px;
+          background: var(--color-molten);
+          flex-shrink: 0;
+        }
+        .srv-dim-bar {
+          flex: 1;
+          height: 1px;
+          background: var(--color-molten);
+          transform-origin: left center;
+        }
+
+        /* Initiële (verborgen) staat alleen mét JS — anders blijft hij getekend */
+        .reveal-ready .srv-dim .srv-dim-bar {
+          transform: scaleX(0);
+          transition: transform 0.9s cubic-bezier(.2,.7,.2,1);
+        }
+        .reveal-ready .srv-dim .srv-dim-label,
+        .reveal-ready .srv-dim .srv-dim-cap {
+          opacity: 0;
+          transition: opacity 0.5s cubic-bezier(.2,.7,.2,1);
+        }
+        /* Eén keer intekenen zodra het featured-blok in beeld is */
+        .reveal-ready .srv-featured.is-visible .srv-dim .srv-dim-bar {
+          transform: scaleX(1);
+        }
+        .reveal-ready .srv-featured.is-visible .srv-dim .srv-dim-label {
+          opacity: 1;
+          transition-delay: 0.55s;
+        }
+        .reveal-ready .srv-featured.is-visible .srv-dim .srv-dim-cap:first-child {
+          opacity: 1;
+          transition-delay: 0.1s;
+        }
+        .reveal-ready .srv-featured.is-visible .srv-dim .srv-dim-cap:last-child {
+          opacity: 1;
+          transition-delay: 0.85s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .reveal-ready .srv-dim .srv-dim-bar {
+            transform: scaleX(1);
+            transition: none;
+          }
+          .reveal-ready .srv-dim .srv-dim-label,
+          .reveal-ready .srv-dim .srv-dim-cap {
+            opacity: 1;
+            transition: none;
+          }
+        }
       `}</style>
     </Section>
   );
@@ -275,6 +351,19 @@ function FeaturedCard({
           />
           <div className="srv-featured-img-overlay" />
           <div className="srv-featured-img-gradient" />
+
+          {/* Tactical maatlijn — tekent zich één keer in bij scroll-reveal.
+              Alleen op de On-site machining-kaart (#01). Decoratief, aria-hidden. */}
+          {item.number === "01" && (
+            <div className="srv-dim">
+              <span className="srv-dim-label">Ø 120 · ±0.02 mm</span>
+              <span className="srv-dim-line">
+                <span className="srv-dim-cap" />
+                <span className="srv-dim-bar" />
+                <span className="srv-dim-cap" />
+              </span>
+            </div>
+          )}
         </div>
       )}
 

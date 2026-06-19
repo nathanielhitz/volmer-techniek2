@@ -18,7 +18,7 @@ export async function Workflow() {
     <Section id="werkwijze" bordered>
       <Container>
         {/* ── Section header ────────────────────────────────────────── */}
-        <div className="wf-header">
+        <div className="wf-header" data-reveal>
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
             <ChapterLabel number="03" name={t("chapterName")} />
             <Eyebrow>{t("eyebrow")}</Eyebrow>
@@ -40,7 +40,7 @@ export async function Workflow() {
         </div>
 
         {/* ── Steps list ────────────────────────────────────────────── */}
-        <div style={{ borderTop: "1px solid var(--border-rule-strong)" }}>
+        <div style={{ borderTop: "1px solid var(--border-rule-strong)" }} data-reveal>
           {steps.map((step) => (
             <StepRow key={step.number} step={step} />
           ))}
