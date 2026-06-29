@@ -20,7 +20,7 @@ export function proxy(request: NextRequest): NextResponse {
 
 export const config = {
   matcher: [
-    // Match all paths except Next.js internals and static files
-    "/((?!_next|_vercel|.*\\..*).*)",
+    // Match all paths except Next.js internals, API routes and static files
+    "/((?!_next|_vercel|api|.*\\..*).*)",
   ],
 };
