@@ -142,7 +142,17 @@ export async function Footer() {
             <a href={cookieHref} className="ft-meta ft-meta-link">
               {t("cookie.label")}
             </a>
-            <span className="ft-meta">{t("builtBy")}</span>
+            <span className="ft-meta">
+              Built by{" "}
+              <a
+                href="https://www.hitzdigital.nl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ft-meta ft-meta-link"
+              >
+                HitzDigital
+              </a>
+            </span>
           </div>
         </div>
       </Container>
@@ -268,8 +278,14 @@ export async function Footer() {
         }
         .ft-meta-link {
           transition: color 0.2s cubic-bezier(.2,.7,.2,1);
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          text-decoration-color: var(--color-steel-60);
         }
-        .ft-meta-link:hover { color: var(--color-molten); }
+        .ft-meta-link:hover {
+          color: var(--color-molten);
+          text-decoration-color: var(--color-molten);
+        }
         .ft-meta-link:focus-visible {
           outline: 2px solid var(--color-molten);
           outline-offset: 2px;
